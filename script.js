@@ -6,8 +6,7 @@ const dishes = [
     image: 'assets/dish-lamb.svg',
     rating: '4.8',
     chef: 'Chef K. Semy',
-    description:
-      'Tender cuts, creamy sides, and a plated finish made to feel refined, warm, and memorable.',
+    description: 'Tender cuts, creamy sides, and a rich finish styled for a warm premium table.',
     tags: ['Most loved dish', 'Creamy side', 'Premium cut'],
     style: 'Modern',
     course: 'Main',
@@ -21,8 +20,7 @@ const dishes = [
     image: 'assets/dish-lotek.svg',
     rating: '4.9',
     chef: 'Chef Rina',
-    description:
-      'Fresh greens, bright garnish, and crisp golden bites plated with a clean and cheerful touch.',
+    description: 'Fresh greens, bright garnish, and crisp golden bites with a clean cheerful finish.',
     tags: ['Chef pick', 'Fresh daily', 'Bright flavour'],
     style: 'Fresh',
     course: 'Lunch',
@@ -36,8 +34,7 @@ const dishes = [
     image: 'assets/dish-martabak.svg',
     rating: '4.7',
     chef: 'Chef Arman',
-    description:
-      'Golden layers, soft centers, and a rich finish styled with contrast and gentle warmth.',
+    description: 'Golden layers, soft centres, and a rich finish styled with contrast and warmth.',
     tags: ['Street classic', 'Soft texture', 'Best seller'],
     style: 'Golden',
     course: 'Snack',
@@ -51,8 +48,7 @@ const dishes = [
     image: 'assets/dish-soup.svg',
     rating: '4.6',
     chef: 'Chef Dimas',
-    description:
-      'A comforting bowl with a smooth broth, light garnish, and a calm home style mood.',
+    description: 'A comforting bowl with a smooth broth, light garnish, and a calm home style mood.',
     tags: ['Comfort food', 'Warm broth', 'Family recipe'],
     style: 'Classic',
     course: 'Soup',
@@ -64,8 +60,8 @@ const dishes = [
 let activeIndex = 0;
 let isAnimating = false;
 
-const currentPlate = document.getElementById('plate-current');
-const incomingPlate = document.getElementById('plate-incoming');
+const currentDish = document.getElementById('dish-current');
+const incomingDish = document.getElementById('dish-incoming');
 const rankNumber = document.getElementById('rank-number');
 const titleTop = document.getElementById('title-top');
 const titleBottom = document.getElementById('title-bottom');
@@ -93,7 +89,7 @@ function buildThumbs() {
       <span>${dish.titleTop}</span>
       <strong>${dish.titleBottom}</strong>
     `;
-    button.addEventListener('click', () => switchDish(index, index > activeIndex ? 1 : -1));
+    button.addEventListener('click', () => switchDish(index));
     thumbStrip.appendChild(button);
   });
 }
@@ -130,7 +126,7 @@ function renderText(dish) {
   });
 }
 
-function mountPlate(element, src, alt) {
+function mountDish(element, src, alt) {
   element.innerHTML = '';
   const img = document.createElement('img');
   img.src = src;
@@ -138,42 +134,40 @@ function mountPlate(element, src, alt) {
   element.appendChild(img);
 }
 
-function switchDish(nextIndex, direction = 1) {
+function switchDish(nextIndex) {
   if (isAnimating || nextIndex === activeIndex) return;
   isAnimating = true;
 
   const nextDish = dishes[nextIndex];
-  const outClass = direction >= 0 ? 'animate-out-left' : 'animate-out-right';
+  mountDish(incomingDish, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
 
-  mountPlate(incomingPlate, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
-  incomingPlate.className = 'plate-layer incoming';
-  currentPlate.classList.remove('animate-out-left', 'animate-out-right');
-  incomingPlate.classList.remove('animate-in');
+  currentDish.className = 'dish-layer current';
+  incomingDish.className = 'dish-layer incoming';
+  void incomingDish.offsetWidth;
 
-  void incomingPlate.offsetWidth;
-  currentPlate.classList.add(outClass);
-  incomingPlate.classList.add('animate-in');
+  currentDish.classList.add('animate-out-left');
+  incomingDish.classList.add('animate-in');
 
   activeIndex = nextIndex;
   renderText(nextDish);
 
   setTimeout(() => {
-    mountPlate(currentPlate, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
-    currentPlate.className = 'plate-layer current';
-    incomingPlate.className = 'plate-layer incoming';
-    incomingPlate.innerHTML = '';
+    mountDish(currentDish, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
+    currentDish.className = 'dish-layer current';
+    incomingDish.className = 'dish-layer incoming';
+    incomingDish.innerHTML = '';
     isAnimating = false;
-  }, 720);
+  }, 820);
 }
 
 prevBtn.addEventListener('click', () => {
   const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
-  switchDish(nextIndex, -1);
+  switchDish(nextIndex);
 });
 
 nextBtn.addEventListener('click', () => {
   const nextIndex = (activeIndex + 1) % dishes.length;
-  switchDish(nextIndex, 1);
+  switchDish(nextIndex);
 });
 
 tabs.forEach((tab, index) => {
@@ -185,7 +179,7 @@ tabs.forEach((tab, index) => {
     if (index === 0) {
       chefText.textContent = dish.description;
     } else {
-      chefText.textContent = `${dish.tags[0]}, ${dish.tags[1].toLowerCase()}, and ${dish.tags[2].toLowerCase()} presented with clean modern styling.`;
+      chefText.textContent = `${dish.tags[0]}, ${dish.tags[1].toLowerCase()}, and ${dish.tags[2].toLowerCase()} with clean modern styling.`;
     }
     chefText.classList.remove('fade-swap');
     void chefText.offsetWidth;
@@ -193,6 +187,6 @@ tabs.forEach((tab, index) => {
   });
 });
 
-mountPlate(currentPlate, dishes[0].image, `${dishes[0].titleTop} ${dishes[0].titleBottom}`);
+mountDish(currentDish, dishes[0].image, `${dishes[0].titleTop} ${dishes[0].titleBottom}`);
 buildThumbs();
 renderText(dishes[0]);
