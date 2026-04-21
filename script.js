@@ -1,12 +1,12 @@
 const dishes = [
-  { id: 'royal-chicken-biryani', titleTop: 'ROYAL CHICKEN', titleBottom: 'BIRYANI', name: 'Royal Chicken Biryani', image: 'assets/dishes/royal-chicken-biryani.png', price: 49, rating: 4.9, cuisine: 'Middle Eastern', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Fragrant rice, tender chicken, and warm spice notes presented in a rich premium bowl.', tags: ['Chef favourite', 'Premium spice', 'Dubai classic', 'AED ready'] },
-  { id: 'sesame-beef-bowl', titleTop: 'SESAME BEEF', titleBottom: 'BOWL', name: 'Sesame Beef Bowl', image: 'assets/dishes/sesame-beef-bowl.png', price: 46, rating: 4.9, cuisine: 'Asian Grill', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Tender beef, sesame, and rich savoury depth in a warm modern bowl.', tags: ['Bold flavour', 'Chef grill', 'Rice bowl', 'AED ready'] },
-  { id: 'mushroom-garden-plate', titleTop: 'MUSHROOM GARDEN', titleBottom: 'PLATE', name: 'Mushroom Garden Plate', image: 'assets/dishes/mushroom-garden-plate.png', price: 34, rating: 4.8, cuisine: 'Contemporary', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.', tags: ['Fresh garden', 'Soft texture', 'Light finish', 'AED ready'] },
-  { id: 'chicken-pasta-bowl', titleTop: 'CHICKEN PASTA', titleBottom: 'BOWL', name: 'Chicken Pasta Bowl', image: 'assets/dishes/chicken-pasta-bowl.png', price: 38, rating: 4.7, cuisine: 'Italian Comfort', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Creamy pasta, tender chicken, and a soft cheesy finish served in a bright hearty bowl.', tags: ['Creamy pasta', 'Family pick', 'Comfort dish', 'AED ready'] },
-  { id: 'shrimp-noodle-bowl', titleTop: 'SHRIMP NOODLE', titleBottom: 'BOWL', name: 'Shrimp Noodle Bowl', image: 'assets/dishes/shrimp-noodle-bowl.png', price: 42, rating: 4.8, cuisine: 'Wok Style', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Springy noodles, shrimp, and wok tossed vegetables finished with a glossy savoury sauce.', tags: ['Wok toss', 'Seafood', 'Popular pick', 'AED ready'] },
-  { id: 'low-carb-tofu-box', titleTop: 'LOW CARB', titleBottom: 'TOFU BOX', name: 'Low Carb Tofu Box', image: 'assets/dishes/low-carb-tofu-box.png', price: 36, rating: 4.6, cuisine: 'Healthy Box', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Grilled tofu, noodles, and greens in a light balanced box with clean presentation.', tags: ['Healthy pick', 'Protein rich', 'Light box', 'AED ready'] },
-  { id: 'sweet-potato-spirals', titleTop: 'SWEET POTATO', titleBottom: 'SPIRALS', name: 'Sweet Potato Spirals', image: 'assets/dishes/sweet-potato-spirals.png', price: 24, rating: 4.5, cuisine: 'Fresh Prep', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Fresh cut sweet potato spirals with bright colour and a clean ready to cook presentation.', tags: ['Fresh prep', 'Bright colour', 'Vegetable side', 'AED ready'] },
-  { id: 'classic-noodle-plate', titleTop: 'CLASSIC NOODLE', titleBottom: 'PLATE', name: 'Classic Noodle Plate', image: 'assets/dishes/classic-noodle-plate.png', price: 28, rating: 4.4, cuisine: 'Simple Plate', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'A light noodle plate with crisp greens and a clean minimal finish.', tags: ['Simple plate', 'Light meal', 'Fresh greens', 'AED ready'] }
+  { id: 'royal-chicken-biryani', titleTop: 'ROYAL CHICKEN', titleBottom: 'BIRYANI', name: 'Royal Chicken Biryani', image: 'assets/dishes/royal-chicken-biryani.png', imageWebp: 'assets/dishes/royal-chicken-biryani.webp', price: 49, rating: 4.9, cuisine: 'Middle Eastern', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Fragrant rice, tender chicken, and warm spice notes presented in a rich premium bowl.', tags: ['Chef favourite', 'Premium spice', 'Dubai classic', 'AED ready'], origin: 'Traditional Emirati spice bowl', calories: 640, protein: 32 },
+  { id: 'sesame-beef-bowl', titleTop: 'SESAME BEEF', titleBottom: 'BOWL', name: 'Sesame Beef Bowl', image: 'assets/dishes/sesame-beef-bowl.png', imageWebp: 'assets/dishes/sesame-beef-bowl.webp', price: 46, rating: 4.9, cuisine: 'Asian Grill', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Tender beef, sesame, and rich savoury depth in a warm modern bowl.', tags: ['Bold flavour', 'Chef grill', 'Rice bowl', 'AED ready'], origin: 'Fire wok sesame glaze', calories: 610, protein: 34 },
+  { id: 'mushroom-garden-plate', titleTop: 'MUSHROOM GARDEN', titleBottom: 'PLATE', name: 'Mushroom Garden Plate', image: 'assets/dishes/mushroom-garden-plate.png', imageWebp: 'assets/dishes/mushroom-garden-plate.webp', price: 34, rating: 4.8, cuisine: 'Contemporary', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.', tags: ['Fresh garden', 'Soft texture', 'Light finish', 'AED ready'], origin: 'Fresh market garden plate', calories: 420, protein: 18 },
+  { id: 'chicken-pasta-bowl', titleTop: 'CHICKEN PASTA', titleBottom: 'BOWL', name: 'Chicken Pasta Bowl', image: 'assets/dishes/chicken-pasta-bowl.png', imageWebp: 'assets/dishes/chicken-pasta-bowl.webp', price: 38, rating: 4.7, cuisine: 'Italian Comfort', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Creamy pasta, tender chicken, and a soft cheesy finish served in a bright hearty bowl.', tags: ['Creamy pasta', 'Family pick', 'Comfort dish', 'AED ready'], origin: 'Traditional Italian fusion', calories: 580, protein: 32 },
+  { id: 'shrimp-noodle-bowl', titleTop: 'SHRIMP NOODLE', titleBottom: 'BOWL', name: 'Shrimp Noodle Bowl', image: 'assets/dishes/shrimp-noodle-bowl.png', imageWebp: 'assets/dishes/shrimp-noodle-bowl.webp', price: 42, rating: 4.8, cuisine: 'Wok Style', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Springy noodles, shrimp, and wok tossed vegetables finished with a glossy savoury sauce.', tags: ['Wok toss', 'Seafood', 'Popular pick', 'AED ready'], origin: 'Seafood wok signature', calories: 560, protein: 29 },
+  { id: 'low-carb-tofu-box', titleTop: 'LOW CARB', titleBottom: 'TOFU BOX', name: 'Low Carb Tofu Box', image: 'assets/dishes/low-carb-tofu-box.png', imageWebp: 'assets/dishes/low-carb-tofu-box.webp', price: 36, rating: 4.6, cuisine: 'Healthy Box', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Grilled tofu, noodles, and greens in a light balanced box with clean presentation.', tags: ['Healthy pick', 'Protein rich', 'Light box', 'AED ready'], origin: 'Balanced green kitchen box', calories: 390, protein: 24 },
+  { id: 'sweet-potato-spirals', titleTop: 'SWEET POTATO', titleBottom: 'SPIRALS', name: 'Sweet Potato Spirals', image: 'assets/dishes/sweet-potato-spirals.png', imageWebp: 'assets/dishes/sweet-potato-spirals.webp', price: 24, rating: 4.5, cuisine: 'Fresh Prep', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Fresh cut sweet potato spirals with bright colour and a clean ready to cook presentation.', tags: ['Fresh prep', 'Bright colour', 'Vegetable side', 'AED ready'], origin: 'Fresh harvest produce', calories: 240, protein: 6 },
+  { id: 'classic-noodle-plate', titleTop: 'CLASSIC NOODLE', titleBottom: 'PLATE', name: 'Classic Noodle Plate', image: 'assets/dishes/classic-noodle-plate.png', imageWebp: 'assets/dishes/classic-noodle-plate.webp', price: 28, rating: 4.4, cuisine: 'Simple Plate', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'A light noodle plate with crisp greens and a clean minimal finish.', tags: ['Simple plate', 'Light meal', 'Fresh greens', 'AED ready'], origin: 'Simple comfort noodle plate', calories: 330, protein: 12 }
 ];
 
 let activeIndex = 0;
@@ -21,6 +21,14 @@ const cart = new Map();
 const plateStage = document.getElementById('plate-stage');
 const currentPlate = document.getElementById('plate-current');
 const incomingPlate = document.getElementById('plate-incoming');
+const orbitTopPath = document.getElementById('orbit-top-path');
+const orbitRightPath = document.getElementById('orbit-right-path');
+const orbitBottomPath = document.getElementById('orbit-bottom-path');
+const orbitLeftPath = document.getElementById('orbit-left-path');
+const orbitTopText = document.getElementById('orbit-top-text');
+const orbitRightText = document.getElementById('orbit-right-text');
+const orbitBottomText = document.getElementById('orbit-bottom-text');
+const orbitLeftText = document.getElementById('orbit-left-text');
 const menuTrack = document.getElementById('menu-track');
 const rankNumber = document.getElementById('rank-number');
 const titleTop = document.getElementById('title-top');
@@ -59,7 +67,73 @@ const orderBuilding = document.getElementById('order-building');
 const summaryUnit = document.getElementById('summary-unit');
 const summaryTotal = document.getElementById('summary-total');
 
+function imageFallbackMarkup(dish) {
+  return `src="${dish.image}" data-fallback="${dish.imageWebp || dish.image.replace('.png', '.webp')}" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.opacity='0';}"`;
+}
+
+function setDishImage(img, dish) {
+  img.src = dish.image;
+  img.alt = dish.name;
+  img.dataset.fallback = dish.imageWebp || dish.image.replace('.png', '.webp');
+  img.onerror = () => {
+    const fallback = img.dataset.fallback;
+    if (fallback && img.src !== new URL(fallback, window.location.href).href) {
+      img.src = fallback;
+      return;
+    }
+    img.style.opacity = '0';
+  };
+}
+
+function polarToCartesian(cx, cy, rx, ry, angle) {
+  const radians = (angle - 90) * Math.PI / 180;
+  return { x: cx + rx * Math.cos(radians), y: cy + ry * Math.sin(radians) };
+}
+
+function describeArc(cx, cy, rx, ry, startAngle, endAngle, sweepFlag = 1) {
+  const start = polarToCartesian(cx, cy, rx, ry, startAngle);
+  const end = polarToCartesian(cx, cy, rx, ry, endAngle);
+  let diff = endAngle - startAngle;
+  diff = ((diff % 360) + 360) % 360;
+  const largeArcFlag = diff > 180 ? '1' : '0';
+  return `M ${start.x.toFixed(2)} ${start.y.toFixed(2)} A ${rx.toFixed(2)} ${ry.toFixed(2)} 0 ${largeArcFlag} ${sweepFlag} ${end.x.toFixed(2)} ${end.y.toFixed(2)}`;
+}
+
+function updatePlateOrbit() {
+  const dish = getActiveDish();
+  const stageRect = plateStage.getBoundingClientRect();
+  const img = currentPlate.querySelector('img');
+  if (!img || !stageRect.width || !stageRect.height) return;
+
+  const naturalWidth = img.naturalWidth || 1;
+  const naturalHeight = img.naturalHeight || 1;
+  const frameSize = currentPlate.getBoundingClientRect().width || currentPlate.offsetWidth || 320;
+  const scale = Math.min(frameSize / naturalWidth, frameSize / naturalHeight);
+  const visibleWidth = naturalWidth * scale;
+  const visibleHeight = naturalHeight * scale;
+  const centerY = (currentPlate.offsetTop + frameSize / 2) / stageRect.height * 100;
+  const rx = Math.min(42, (visibleWidth / stageRect.width) * 50 + 4.6);
+  const ry = Math.min(37.5, (visibleHeight / stageRect.height) * 50 + 5.1);
+  const cx = 50;
+  const cy = centerY;
+
+  orbitTopPath.setAttribute('d', describeArc(cx, cy, rx, ry, -72, 72, 1));
+  orbitRightPath.setAttribute('d', describeArc(cx, cy, rx + 0.8, ry + 0.6, 34, 146, 1));
+  orbitBottomPath.setAttribute('d', describeArc(cx, cy, rx + 0.2, ry + 0.8, 248, 112, 0));
+  orbitLeftPath.setAttribute('d', describeArc(cx, cy, rx + 0.8, ry + 0.6, 326, 214, 0));
+
+  orbitTopText.textContent = dish.name.toUpperCase();
+  orbitRightText.textContent = `CALORIES: ${dish.calories} / PROTEIN: ${dish.protein}G`;
+  orbitBottomText.textContent = `PRICE: AED ${dish.price}`;
+  orbitLeftText.textContent = `ORIGIN: ${dish.origin.toUpperCase()}`;
+}
+
+function refreshPlateOrbit() {
+  requestAnimationFrame(() => requestAnimationFrame(updatePlateOrbit));
+}
+
 function getDish(index) {
+
   const size = dishes.length;
   return dishes[(index + size) % size];
 }
@@ -83,15 +157,14 @@ function getCartTotal() {
 function mountPlate(target, dish) {
   target.innerHTML = '';
   const img = document.createElement('img');
-  img.src = dish.image;
-  img.alt = dish.name;
+  setDishImage(img, dish);
   img.draggable = false;
   target.appendChild(img);
 }
 
 function cardAlpha(distance, isActive) {
-  if (isActive) return 0.6;
-  return Math.max(0.25, 0.5 - distance * 0.05);
+  if (isActive) return 0.78;
+  return Math.max(0.18, 0.5 - distance * 0.05);
 }
 
 function menuCardTemplate(dish, index) {
@@ -99,7 +172,7 @@ function menuCardTemplate(dish, index) {
   const distance = Math.abs(index - activeIndex);
   return `
     <button class="menu-card ${isActive ? 'active' : ''}" data-index="${index}" type="button" style="--box-alpha:${cardAlpha(distance, isActive)}" aria-label="${dish.name}">
-      <img src="${dish.image}" alt="${dish.name}" />
+      <img ${imageFallbackMarkup(dish)} alt="${dish.name}" />
       <span>${dish.titleTop}</span>
       <strong>${dish.titleBottom}</strong>
       <em>AED ${dish.price}</em>
@@ -175,6 +248,7 @@ function renderDish() {
   refreshMenuStyles();
   centerActiveMenuCard();
   syncOrderSummary();
+  refreshPlateOrbit();
 }
 
 
@@ -198,7 +272,8 @@ function switchDish(nextIndex) {
     incomingPlate.className = 'plate-layer incoming';
     incomingPlate.innerHTML = '';
     isAnimating = false;
-  }, 820);
+    refreshPlateOrbit();
+  }, 900);
 }
 
 function nextDish() { switchDish(activeIndex + 1); }
@@ -293,7 +368,7 @@ function renderOrderCartList(animated = false) {
     const item = document.createElement('div');
     item.className = `order-cart-chip ${animated ? 'drop-in' : ''}`;
     item.style.animationDelay = `${index * 90}ms`;
-    item.innerHTML = `<img src="${dish.image}" alt="${dish.name}" /><span>${dish.name} x${quantity}</span>`;
+    item.innerHTML = `<img ${imageFallbackMarkup(dish)} alt="${dish.name}" /><span>${dish.name} x${quantity}</span>`;
     orderCartList.appendChild(item);
   });
 }
@@ -435,3 +510,5 @@ buildMenu();
 renderDish();
 updateCartVisuals();
 orderLocation.value = 'Dubai Marina, Dubai';
+window.addEventListener('resize', refreshPlateOrbit);
+window.addEventListener('load', refreshPlateOrbit);

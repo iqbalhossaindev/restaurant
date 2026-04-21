@@ -142,14 +142,14 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 
 .plate-section {
   position: relative;
-  min-height: 322px;
+  min-height: 448px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 .plate-stage {
   position: relative;
-  width: min(100%, 520px);
+  width: min(100%, 720px);
   min-height: inherit;
   display: flex;
   align-items: flex-start;
@@ -161,54 +161,74 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 .plate-shadow {
   position: absolute;
   left: 50%;
-  bottom: 14px;
-  width: min(56vw, 280px);
-  height: 36px;
+  bottom: 54px;
+  width: min(50vw, 310px);
+  height: 46px;
   transform: translateX(-50%);
   border-radius: 999px;
-  background: radial-gradient(circle at center, rgba(62, 46, 35, 0.22) 0%, rgba(62, 46, 35, 0.1) 48%, rgba(62, 46, 35, 0) 74%);
-  filter: blur(9px);
+  background: radial-gradient(circle at center, rgba(58, 40, 30, 0.28) 0%, rgba(58, 40, 30, 0.14) 42%, rgba(58, 40, 30, 0.02) 70%, rgba(58, 40, 30, 0) 80%);
+  filter: blur(14px);
   z-index: 0;
 }
+.plate-orbit-info {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.plate-orbit-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.orbit-text {
+  fill: #4a413d;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.orbit-top { font-size: 7.8px; font-weight: 700; letter-spacing: 0.065em; }
+.orbit-right, .orbit-left { font-size: 4.2px; fill: #6f6661; letter-spacing: 0.08em; }
+.orbit-bottom { font-size: 6.1px; font-weight: 700; fill: #403733; letter-spacing: 0.06em; }
 .plate-layer {
   position: absolute;
-  top: 8px;
+  top: 44px;
   width: clamp(250px, 28vw, 360px);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   transform-origin: 50% 50%;
-  z-index: 1;
+  z-index: 2;
 }
 .plate-layer img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 18px 18px rgba(63, 41, 25, 0.16)) drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+  filter: drop-shadow(0 24px 24px rgba(65, 44, 29, 0.14)) drop-shadow(0 8px 10px rgba(0,0,0,0.08));
 }
 .plate-layer.incoming { opacity: 0; pointer-events: none; }
-.plate-layer.animate-in { animation: plateIn 820ms cubic-bezier(0.2, 0.84, 0.22, 1) forwards; }
-.plate-layer.animate-out { animation: plateOut 820ms cubic-bezier(0.36, 0.04, 0.18, 1) forwards; }
+.plate-layer.animate-in { animation: plateIn 900ms cubic-bezier(0.18, 0.84, 0.22, 1) forwards; }
+.plate-layer.animate-out { animation: plateOut 900ms cubic-bezier(0.36, 0.04, 0.18, 1) forwards; }
 .plate-helper {
   position: absolute;
-  right: max(6px, calc(50% - 350px));
-  top: 14px;
+  right: max(16px, calc(50% - 380px));
+  top: 24px;
   margin: 0;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.02em;
   color: rgba(92, 82, 76, 0.72);
 }
 
 @keyframes plateIn {
-  0% { opacity: 0; transform: translateY(-145%) rotate(18deg) scale(0.92); }
-  45% { opacity: 1; }
-  78% { transform: translateY(4%) rotate(-4deg) scale(0.985); }
+  0% { opacity: 0; transform: translateY(-150%) rotate(26deg) scale(0.88); }
+  42% { opacity: 1; }
+  75% { transform: translateY(4%) rotate(-7deg) scale(0.99); }
   100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
 }
 @keyframes plateOut {
-  0% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
-  100% { opacity: 0; transform: translateX(-150%) rotate(-28deg) scale(0.95); }
+  0% { opacity: 1; transform: translateX(0) translateY(0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translateX(-148%) translateY(6%) rotate(-42deg) scale(0.92); }
 }
 
 .menu-band { position: relative; }
@@ -238,8 +258,8 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   transition: transform 220ms ease, background 220ms ease, opacity 220ms ease, box-shadow 220ms ease;
 }
 .menu-card.active {
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25), 0 18px 24px rgba(65, 50, 39, 0.06);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4), 0 18px 24px rgba(65, 50, 39, 0.08);
 }
 .menu-card img {
   width: 92px;
@@ -608,11 +628,14 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   .top-actions { gap: 8px; }
   .chip-link { padding: 12px 16px; }
   .icon-btn, .footer-icon, .round-muted, .heart-btn, .modal-close { width: 48px; height: 48px; }
-  .plate-section { min-height: 290px; }
+  .plate-section { min-height: 392px; }
   .plate-stage { width: 100%; }
-  .plate-layer { width: min(72vw, 282px); top: 8px; }
-  .plate-shadow { width: min(58vw, 220px); bottom: 20px; }
-  .plate-helper { right: 14px; top: 8px; font-size: 0.62rem; max-width: 110px; text-align: right; }
+  .plate-layer { width: min(74vw, 292px); top: 58px; }
+  .plate-shadow { width: min(60vw, 220px); bottom: 68px; }
+  .orbit-top { font-size: 9.2px; }
+  .orbit-right, .orbit-left { font-size: 4.8px; }
+  .orbit-bottom { font-size: 7px; }
+  .plate-helper { right: 12px; top: 12px; font-size: 0.62rem; max-width: 118px; text-align: right; }
   .menu-shell { border-radius: 30px; padding: 14px 0; }
   .menu-track { grid-auto-columns: calc((100% - 4 * 10px) / 4.55); gap: 10px; padding: 0 12px; }
   .menu-card { padding: 12px 8px 14px; border-radius: 24px; }
@@ -635,8 +658,8 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 }
 @media (max-width: 420px) {
   .brand { font-size: 0.98rem; }
-  .plate-section { min-height: 282px; }
-  .plate-layer { width: min(71vw, 272px); }
+  .plate-section { min-height: 372px; }
+  .plate-layer { width: min(72vw, 278px); top: 62px; }
   .meta-row { gap: 10px; }
   .meta-pill { min-height: 46px; padding: 10px 14px; }
   .details-card h2 { font-size: 1.62rem; }

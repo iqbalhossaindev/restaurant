@@ -32,10 +32,24 @@
         <section class="plate-section" aria-label="Featured dish area">
           <div class="plate-stage" id="plate-stage">
             <div class="plate-shadow"></div>
+            <div class="plate-orbit-info" aria-hidden="true">
+              <svg class="plate-orbit-svg" id="plate-orbit-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                  <path id="orbit-top-path"></path>
+                  <path id="orbit-right-path"></path>
+                  <path id="orbit-bottom-path"></path>
+                  <path id="orbit-left-path"></path>
+                </defs>
+                <text class="orbit-text orbit-top"><textPath id="orbit-top-text" href="#orbit-top-path" startOffset="50%" text-anchor="middle"></textPath></text>
+                <text class="orbit-text orbit-right"><textPath id="orbit-right-text" href="#orbit-right-path" startOffset="50%" text-anchor="middle"></textPath></text>
+                <text class="orbit-text orbit-bottom"><textPath id="orbit-bottom-text" href="#orbit-bottom-path" startOffset="50%" text-anchor="middle"></textPath></text>
+                <text class="orbit-text orbit-left"><textPath id="orbit-left-text" href="#orbit-left-path" startOffset="50%" text-anchor="middle"></textPath></text>
+              </svg>
+            </div>
             <div class="plate-layer current" id="plate-current"></div>
             <div class="plate-layer incoming" id="plate-incoming" aria-hidden="true"></div>
           </div>
-          <p class="plate-helper">Tap on the food to add to cart</p>
+          <p class="plate-helper">Double tap the food to add to cart</p>
         </section>
 
         <section class="menu-band" aria-label="Dish slider section">
