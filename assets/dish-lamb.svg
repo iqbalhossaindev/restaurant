@@ -1,33 +1,27 @@
 <svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="plate" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(450 440) rotate(90) scale(360)">
-      <stop stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#e9e7e5"/>
-    </radialGradient>
-    <filter id="shadow" x="80" y="90" width="740" height="740" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#9f8a7b" flood-opacity="0.28"/>
+    <filter id="shadow" x="130" y="180" width="640" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#6F4635" flood-opacity="0.25"/>
     </filter>
-    <linearGradient id="meat" x1="250" y1="270" x2="520" y2="560" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7f4a2f"/>
-      <stop offset="1" stop-color="#4f281a"/>
+    <linearGradient id="meat" x1="240" y1="280" x2="560" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7F4A2F"/>
+      <stop offset="1" stop-color="#4F281A"/>
     </linearGradient>
     <linearGradient id="potato" x1="430" y1="470" x2="630" y2="660" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#f8e7a3"/>
-      <stop offset="1" stop-color="#e5c86a"/>
+      <stop stop-color="#F8E7A3"/>
+      <stop offset="1" stop-color="#E5C86A"/>
     </linearGradient>
   </defs>
   <g filter="url(#shadow)">
-    <circle cx="450" cy="450" r="285" fill="url(#plate)"/>
-    <circle cx="450" cy="450" r="250" fill="#FAF8F7"/>
+    <ellipse cx="390" cy="430" rx="150" ry="115" transform="rotate(-22 390 430)" fill="url(#meat)"/>
+    <ellipse cx="365" cy="430" rx="115" ry="84" transform="rotate(-24 365 430)" fill="#845338" opacity="0.42"/>
+    <ellipse cx="535" cy="560" rx="114" ry="94" transform="rotate(14 535 560)" fill="url(#potato)"/>
+    <ellipse cx="555" cy="585" rx="72" ry="48" transform="rotate(10 555 585)" fill="#F4DD97" opacity="0.75"/>
+    <ellipse cx="610" cy="388" rx="40" ry="55" transform="rotate(18 610 388)" fill="#D85D45"/>
+    <ellipse cx="662" cy="410" rx="32" ry="46" transform="rotate(-12 662 410)" fill="#D14D39"/>
+    <path d="M597 332c19 8 36 22 46 40" stroke="#4B8F48" stroke-width="18" stroke-linecap="round"/>
+    <path d="M650 355c19 8 37 22 47 40" stroke="#6CAB56" stroke-width="16" stroke-linecap="round"/>
+    <path d="M288 526c58 30 130 38 195 22" stroke="#8D5D34" stroke-width="24" stroke-linecap="round" opacity="0.28"/>
+    <path d="M330 318c36 17 73 26 112 30" stroke="#F3F0EA" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
   </g>
-  <ellipse cx="395" cy="430" rx="148" ry="112" transform="rotate(-22 395 430)" fill="url(#meat)"/>
-  <ellipse cx="370" cy="430" rx="112" ry="84" transform="rotate(-24 370 430)" fill="#845338" opacity="0.42"/>
-  <ellipse cx="534" cy="565" rx="112" ry="92" transform="rotate(14 534 565)" fill="url(#potato)"/>
-  <ellipse cx="556" cy="588" rx="70" ry="48" transform="rotate(10 556 588)" fill="#f4dd97" opacity="0.75"/>
-  <ellipse cx="610" cy="388" rx="38" ry="54" transform="rotate(18 610 388)" fill="#d85d45"/>
-  <ellipse cx="662" cy="410" rx="32" ry="46" transform="rotate(-12 662 410)" fill="#d14d39"/>
-  <path d="M597 332c19 8 36 22 46 40" stroke="#4b8f48" stroke-width="18" stroke-linecap="round"/>
-  <path d="M650 355c19 8 37 22 47 40" stroke="#6cab56" stroke-width="16" stroke-linecap="round"/>
-  <path d="M288 526c58 30 130 38 195 22" stroke="#8d5d34" stroke-width="24" stroke-linecap="round" opacity="0.28"/>
-  <path d="M330 318c36 17 73 26 112 30" stroke="#f3f0ea" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
 </svg>
