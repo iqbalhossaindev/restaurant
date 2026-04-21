@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dish Studio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <div class="bg-orb orb-left"></div>
       <div class="bg-orb orb-right"></div>
+
       <header class="topbar">
         <div class="brand">DISH<span>STUDIO</span></div>
         <div class="top-actions">
@@ -23,23 +26,23 @@
       </header>
 
       <main class="hero-grid">
-        <section class="plate-stage">
+        <section class="plate-stage" id="plate-stage">
           <div class="plate-aura"></div>
           <div class="orbit-ring"></div>
           <div class="plate-layer current" id="plate-current">
-            <img src="assets/dish-lamb.svg" alt="Lamb Steak Potato" />
+            <img src="assets/mushroom-garden-plate.png" alt="Mushroom Garden Plate" />
           </div>
           <div class="plate-layer incoming" id="plate-incoming" aria-hidden="true"></div>
         </section>
 
         <section class="hero-copy">
-          <p class="eyebrow"><span id="rank-number">#2</span> signature plate</p>
+          <p class="eyebrow"><span id="rank-number">#1</span> signature plate</p>
           <h1 class="dish-title">
-            <span id="title-top">Lamb Steak</span>
-            <strong id="title-bottom">Potato</strong>
+            <span id="title-top">Mushroom Garden</span>
+            <strong id="title-bottom">Plate</strong>
           </h1>
           <p class="hero-description" id="dish-description">
-            Tender cuts, creamy sides, and a plated finish made to feel refined, warm, and memorable.
+            Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.
           </p>
 
           <div class="tag-row" id="tag-row"></div>
@@ -64,6 +67,8 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.59 16.59 1.41 1.41L16.41 12 11 6.59 9.59 8l4 4z"/></svg>
             </button>
           </div>
+
+          <p class="swipe-note">Swipe on the dish to change menu items</p>
         </section>
 
         <aside class="info-card">
@@ -79,15 +84,15 @@
             </button>
           </div>
 
-          <h2 id="chef-name">Chef K. Semy</h2>
+          <h2 id="chef-name">Chef Special</h2>
           <p class="info-text" id="chef-text">
-            A composed plate with gentle richness, balanced garnish, and a soft premium finish.
+            Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.
           </p>
 
           <div class="stats-grid">
             <div class="stat-box"><span>Style</span><strong>Modern</strong></div>
             <div class="stat-box"><span>Course</span><strong>Main</strong></div>
-            <div class="stat-box"><span>Texture</span><strong>Soft</strong></div>
+            <div class="stat-box"><span>Texture</span><strong>Tender</strong></div>
             <div class="stat-box"><span>Serving</span><strong>Hot</strong></div>
           </div>
 
