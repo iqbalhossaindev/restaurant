@@ -2,66 +2,143 @@
    DISH STUDIO — Script
    ═══════════════════════════════════════════ */
 
+// ─── Dish Data ────────────────────────────────────────────
 const dishes = [
   {
-    id: 'lamb',
-    titleTop: 'Lamb Steak',
-    titleBottom: 'Potato',
-    image: 'assets/dish-lamb.svg',
-    rating: '4.8',
-    chef: 'Chef K. Semy',
-    description: 'Tender cuts, creamy sides, and a plated finish made to feel refined, warm, and memorable.',
-    tags: ['Most loved dish', 'Creamy side', 'Premium cut'],
-    style: 'Modern',
+    id: 'bulgogi',
+    titleTop: 'Korean',
+    titleBottom: 'Bulgogi Bowl',
+    image: 'images/dish-bulgogi.png',
+    rating: '4.9',
+    chef: 'Chef Min-Jun K.',
+    description: 'Tender marinated beef, steamed rice, caramelised onions, sesame seeds and spring onions — a bold, satisfying Korean classic done right.',
+    chefNote: 'A bold Korean classic — marinated beef, sesame, and rice perfectly balanced with house-pickled garnish.',
+    ingredients: 'Sliced beef, jasmine rice, soy-sesame marinade, spring onions, toasted sesame, pickled daikon — slow-cooked to perfection.',
+    tags: ['Best Seller', 'Korean Classic', 'Rich & Bold'],
+    style: 'Korean',
     course: 'Main',
-    texture: 'Soft',
+    texture: 'Tender',
     serving: 'Hot',
     price: 65,
   },
   {
-    id: 'lotek',
-    titleTop: 'Lotek',
-    titleBottom: 'Perkedel',
-    image: 'assets/dish-lotek.svg',
-    rating: '4.9',
-    chef: 'Chef Rina',
-    description: 'Fresh greens, bright garnish, and crisp golden bites plated with a clean and cheerful touch.',
-    tags: ['Chef pick', 'Fresh daily', 'Bright flavour'],
-    style: 'Fresh',
-    course: 'Lunch',
-    texture: 'Crisp',
+    id: 'noodle',
+    titleTop: 'Noodle',
+    titleBottom: 'Greens Base',
+    image: 'images/dish-noodle.png',
+    rating: '4.6',
+    chef: 'Chef Yuki T.',
+    description: 'Clean, light and versatile — springy egg noodles with fresh crisp lettuce, served as a pure base ready for your favourite toppings.',
+    chefNote: 'The blank canvas of our menu. Pure, bouncy noodles paired with fresh greens for those who love simplicity.',
+    ingredients: 'Fresh egg noodles, crisp iceberg lettuce, light sesame oil, sea salt — minimal, honest, and clean.',
+    tags: ['Clean & Light', 'Customisable', 'Vegetarian'],
+    style: 'Minimal',
+    course: 'Base',
+    texture: 'Springy',
     serving: 'Warm',
-    price: 45,
-  },
-  {
-    id: 'martabak',
-    titleTop: 'Martabak',
-    titleBottom: 'Pakadin',
-    image: 'assets/dish-martabak.svg',
-    rating: '4.7',
-    chef: 'Chef Arman',
-    description: 'Golden layers, soft centers, and a rich finish styled with contrast and gentle warmth.',
-    tags: ['Street classic', 'Soft texture', 'Best seller'],
-    style: 'Golden',
-    course: 'Snack',
-    texture: 'Layered',
-    serving: 'Hot',
     price: 35,
   },
   {
-    id: 'sup',
-    titleTop: 'Sup Asli',
-    titleBottom: 'Wonogiri',
-    image: 'assets/dish-soup.svg',
-    rating: '4.6',
-    chef: 'Chef Dimas',
-    description: 'A comforting bowl with a smooth broth, light garnish, and a calm home style mood.',
-    tags: ['Comfort food', 'Warm broth', 'Family recipe'],
-    style: 'Classic',
-    course: 'Soup',
+    id: 'lomein',
+    titleTop: 'Shrimp',
+    titleBottom: 'Lo Mein',
+    image: 'images/dish-lomein.png',
+    rating: '4.8',
+    chef: 'Chef Hai W.',
+    description: 'Wok-tossed egg noodles with juicy tiger shrimp, snow peas, mushrooms, carrot ribbons and red chilli — fragrant, fiery and full of character.',
+    chefNote: 'High-heat wok magic — every strand coated in savoury umami, every shrimp perfectly blistered and sweet.',
+    ingredients: 'Tiger shrimp, egg noodles, snow peas, shiitake mushroom, red bell pepper, oyster sauce, garlic, sesame oil.',
+    tags: ['Wok-Fired', 'Seafood', 'Chef Pick'],
+    style: 'Chinese',
+    course: 'Main',
     texture: 'Silky',
     serving: 'Hot',
-    price: 40,
+    price: 55,
+  },
+  {
+    id: 'tofu',
+    titleTop: 'Low Carb',
+    titleBottom: 'Tofu Box',
+    image: 'images/dish-tofu.png',
+    rating: '4.7',
+    chef: 'Chef Priya N.',
+    description: 'Golden spiced tofu slabs over delicate noodles with steamed bok choy — the ultimate low-carb bowl that never compromises on flavour.',
+    chefNote: 'Perfectly seared tofu with a golden crust and soft centre, paired with clean greens and umami-seasoned noodles.',
+    ingredients: 'Firm tofu, konjac noodles, baby bok choy, turmeric spice crust, garlic crumb, light soy glaze.',
+    tags: ['Low Carb', 'Plant-Based', 'High Protein'],
+    style: 'Asian Fusion',
+    course: 'Main',
+    texture: 'Crisp-Soft',
+    serving: 'Hot',
+    price: 45,
+  },
+  {
+    id: 'biryani',
+    titleTop: 'Chicken',
+    titleBottom: 'Biryani',
+    image: 'images/dish-biryani.png',
+    rating: '5.0',
+    chef: 'Chef Arif M.',
+    description: 'Saffron-kissed long-grain basmati layered with slow-cooked chicken, caramelised onions, whole spices, cashews and fresh mint — a celebration in a bowl.',
+    chefNote: 'A labour of love built on centuries of tradition. Every grain carries the perfume of cardamom, clove and star anise.',
+    ingredients: 'Basmati rice, whole chicken leg, saffron, caramelised onion, cashews, cinnamon, cardamom, cloves, star anise, fresh mint.',
+    tags: ['Signature Dish', 'Slow Cooked', 'South Asian'],
+    style: 'South Asian',
+    course: 'Main',
+    texture: 'Fluffy',
+    serving: 'Hot',
+    price: 60,
+  },
+  {
+    id: 'spirals',
+    titleTop: 'Sweet Potato',
+    titleBottom: 'Spirals',
+    image: 'images/dish-spirals.png',
+    rating: '4.5',
+    chef: 'Chef Lena B.',
+    description: 'Vibrant, naturally sweet spiralised sweet potato — roasted to tender perfection. A colourful, wholesome alternative to pasta or noodles.',
+    chefNote: 'Farm-fresh sweet potato turned into silky spirals — naturally sweet, naturally beautiful, and packed with goodness.',
+    ingredients: 'Fresh sweet potato spirals, olive oil, rosemary, cracked black pepper, sea salt, optional honey glaze.',
+    tags: ['Gluten-Free', 'Farm Fresh', 'Wholesome'],
+    style: 'Wholesome',
+    course: 'Side / Main',
+    texture: 'Tender',
+    serving: 'Warm',
+    price: 30,
+  },
+  {
+    id: 'pasta',
+    titleTop: 'Paneer',
+    titleBottom: 'Pasta',
+    image: 'images/dish-pasta.webp',
+    rating: '4.8',
+    chef: 'Chef Sofia R.',
+    description: 'Golden paneer cubes over spaghetti with sautéed spinach, roasted red pepper, mushrooms and a light Parmesan dusting — comfort fusion at its finest.',
+    chefNote: 'East meets West in the most satisfying way. Crispy paneer brings richness, while the spaghetti keeps every bite grounded.',
+    ingredients: 'Spaghetti, fresh paneer, baby spinach, roasted red pepper, cremini mushrooms, Parmesan, garlic, olive oil, herbs.',
+    tags: ['Fusion Favourite', 'Vegetarian', 'Comfort Food'],
+    style: 'Fusion',
+    course: 'Main',
+    texture: 'Rich',
+    serving: 'Hot',
+    price: 50,
+  },
+  {
+    id: 'stirfry',
+    titleTop: 'Mushroom',
+    titleBottom: 'Stir-Fry',
+    image: 'images/dish-stirfry.png',
+    rating: '4.7',
+    chef: 'Chef Dani L.',
+    description: 'Earthy shiitake mushrooms, minced meat, diced carrots and spring onion in a savoury sauce — wok-tossed fast and served with soul.',
+    chefNote: 'A humble dish elevated by technique. The secret is high heat and the perfect umami broth that ties every element together.',
+    ingredients: 'Shiitake mushrooms, minced pork, carrot, spring onion, ginger, oyster sauce, Shaoxing wine, sesame oil, white pepper.',
+    tags: ['Umami Packed', 'Wok Fresh', 'Quick & Hearty'],
+    style: 'Chinese',
+    course: 'Main',
+    texture: 'Juicy',
+    serving: 'Hot',
+    price: 48,
   },
 ];
 
@@ -74,6 +151,7 @@ let currentPaymentMethod = 'card';
 // ─── DOM refs ─────────────────────────────────────────────
 const currentPlate  = document.getElementById('plate-current');
 const incomingPlate = document.getElementById('plate-incoming');
+const plateStage    = document.getElementById('plate-stage');
 const rankNumber    = document.getElementById('rank-number');
 const titleTop      = document.getElementById('title-top');
 const titleBottom   = document.getElementById('title-bottom');
@@ -129,13 +207,13 @@ function buildThumbs() {
 
 // ─── Render Text ──────────────────────────────────────────
 function renderText(dish) {
-  rankNumber.textContent = `#${activeIndex + 1}`;
-  titleTop.textContent   = dish.titleTop;
-  titleBottom.textContent= dish.titleBottom;
-  dishDesc.textContent   = dish.description;
-  ratingEl.textContent   = dish.rating;
-  chefName.textContent   = dish.chef;
-  chefText.textContent   = dish.description;
+  rankNumber.textContent  = `#${activeIndex + 1}`;
+  titleTop.textContent    = dish.titleTop;
+  titleBottom.textContent = dish.titleBottom;
+  dishDesc.textContent    = dish.description;
+  ratingEl.textContent    = dish.rating;
+  chefName.textContent    = dish.chef;
+  chefText.textContent    = dish.chefNote;
   statStyle.textContent   = dish.style;
   statCourse.textContent  = dish.course;
   statTexture.textContent = dish.texture;
@@ -161,6 +239,14 @@ function renderText(dish) {
   Array.from(thumbStrip.children).forEach((thumb, i) => {
     thumb.classList.toggle('active', i === activeIndex);
   });
+
+  // Keep active thumb visible
+  const activeThumb = thumbStrip.children[activeIndex];
+  if (activeThumb) {
+    activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  updateWhatsAppLinks();
 }
 
 // ─── Mount Plate Image ────────────────────────────────────
@@ -173,15 +259,12 @@ function mountPlate(element, src, alt) {
 }
 
 // ─── Switch Dish ──────────────────────────────────────────
-// direction: 1 = going right (next) → current exits RIGHT, new enters from top
-//           -1 = going left (prev) → current exits LEFT, new enters from top
+// direction: 1 = swipe right → current exits RIGHT, -1 = swipe left → current exits LEFT
 function switchDish(nextIndex, direction = 1) {
   if (isAnimating || nextIndex === activeIndex) return;
   isAnimating = true;
 
   const nextDish = dishes[nextIndex];
-  // If going next (right direction), current exits to the RIGHT
-  // If going prev (left direction), current exits to the LEFT
   const outClass = direction >= 0 ? 'animate-out-right' : 'animate-out-left';
 
   mountPlate(incomingPlate, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
@@ -205,7 +288,7 @@ function switchDish(nextIndex, direction = 1) {
   }, 720);
 }
 
-// ─── Navigation ───────────────────────────────────────────
+// ─── Navigation Buttons ───────────────────────────────────
 prevBtn.addEventListener('click', () => {
   const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
   switchDish(nextIndex, -1);
@@ -216,6 +299,85 @@ nextBtn.addEventListener('click', () => {
   switchDish(nextIndex, 1);
 });
 
+// ─── SWIPE SUPPORT (Touch + Mouse) ───────────────────────
+(function initSwipe() {
+  let startX = 0;
+  let startY = 0;
+  let isDragging = false;
+  const THRESHOLD = 50; // min px to trigger swipe
+
+  // ── Touch events ──
+  plateStage.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isDragging = true;
+  }, { passive: true });
+
+  plateStage.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const dx = e.touches[0].clientX - startX;
+    const dy = e.touches[0].clientY - startY;
+    // If horizontal swipe is dominant, prevent vertical scroll
+    if (Math.abs(dx) > Math.abs(dy)) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  plateStage.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+
+    // Only trigger if horizontal movement is dominant
+    if (Math.abs(dx) < Math.abs(dy) || Math.abs(dx) < THRESHOLD) return;
+
+    if (dx > 0) {
+      // Swiped RIGHT → dish exits right → go to previous
+      const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
+      switchDish(nextIndex, 1);
+    } else {
+      // Swiped LEFT → dish exits left → go to next
+      const nextIndex = (activeIndex + 1) % dishes.length;
+      switchDish(nextIndex, -1);
+    }
+  }, { passive: true });
+
+  // ── Mouse drag events ──
+  plateStage.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    startY = e.clientY;
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+  });
+
+  document.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    if (Math.abs(dx) < Math.abs(dy) || Math.abs(dx) < THRESHOLD) return;
+
+    if (dx > 0) {
+      // Dragged RIGHT → dish exits right → previous
+      const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
+      switchDish(nextIndex, 1);
+    } else {
+      // Dragged LEFT → dish exits left → next
+      const nextIndex = (activeIndex + 1) % dishes.length;
+      switchDish(nextIndex, -1);
+    }
+  });
+
+  // Cancel drag if mouse leaves window
+  document.addEventListener('mouseleave', () => { isDragging = false; });
+})();
+
 // ─── Tabs ─────────────────────────────────────────────────
 tabs.forEach((tab, index) => {
   tab.addEventListener('click', () => {
@@ -223,9 +385,9 @@ tabs.forEach((tab, index) => {
     tab.classList.add('active');
     const dish = dishes[activeIndex];
     if (index === 0) {
-      chefText.textContent = dish.description;
+      chefText.textContent = dish.chefNote;
     } else {
-      chefText.textContent = `${dish.tags[0]}, ${dish.tags[1].toLowerCase()}, and ${dish.tags[2].toLowerCase()} — presented with clean modern styling.`;
+      chefText.textContent = dish.ingredients;
     }
     chefText.classList.remove('fade-swap');
     void chefText.offsetWidth;
@@ -254,7 +416,6 @@ function openOrderModal() {
   modalDishName.textContent = `${dish.titleTop} ${dish.titleBottom}`;
   modalDishPrice.textContent = dish.price;
 
-  // Reset payment to card
   document.getElementById('pay-card').checked = true;
   cardForm.classList.remove('hidden');
   codForm.classList.add('hidden');
@@ -269,10 +430,8 @@ function closeOrderModal() {
   document.body.style.overflow = '';
 }
 
-// Open modal from multiple buttons
 document.getElementById('order-now-btn').addEventListener('click', openOrderModal);
 document.getElementById('card-order-main-btn').addEventListener('click', openOrderModal);
-document.getElementById('about-order-btn').addEventListener('click', openOrderModal);
 document.getElementById('footer-order-link').addEventListener('click', openOrderModal);
 
 modalClose.addEventListener('click', closeOrderModal);
@@ -323,14 +482,12 @@ confirmBtn.addEventListener('click', () => {
     window.open(`https://wa.me/15798995633?text=${msg}`, '_blank');
     closeOrderModal();
   } else {
-    // Show success
     closeOrderModal();
     successModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }
 });
 
-// ─── Success Modal Close ──────────────────────────────────
 successCloseBtn.addEventListener('click', () => {
   successModal.classList.add('hidden');
   document.body.style.overflow = '';
@@ -343,22 +500,16 @@ successModal.addEventListener('click', (e) => {
   }
 });
 
-// ─── WhatsApp Order Buttons ───────────────────────────────
+// ─── WhatsApp Links ───────────────────────────────────────
 function updateWhatsAppLinks() {
   const dish = dishes[activeIndex];
   const msg = encodeURIComponent(`Hi Dish Studio! 🍽️\n\nI'd like to order *${dish.titleTop} ${dish.titleBottom}* (AED ${dish.price}).\n\nPlease confirm. Thank you!`);
   const url = `https://wa.me/15798995633?text=${msg}`;
-  document.getElementById('whatsapp-order-btn').href = url;
-  document.querySelector('.floating-wa').href = url;
+  const waBtn = document.getElementById('whatsapp-order-btn');
+  const floatingWa = document.querySelector('.floating-wa');
+  if (waBtn) waBtn.href = url;
+  if (floatingWa) floatingWa.href = url;
 }
-
-// Update WA links when dish changes (wrap switchDish)
-const originalSwitchDish = switchDish;
-const _origRenderText = renderText;
-renderText = function(dish) {
-  _origRenderText(dish);
-  updateWhatsAppLinks();
-};
 
 // ─── Card number formatting ───────────────────────────────
 const cardInput = document.getElementById('card-number-input');
@@ -373,9 +524,14 @@ if (cardInput) {
 // ─── Keyboard navigation ──────────────────────────────────
 document.addEventListener('keydown', (e) => {
   if (orderModal.classList.contains('hidden') && successModal.classList.contains('hidden')) {
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn.click();
-    if (e.key === 'Escape') closeOrderModal();
+    if (e.key === 'ArrowLeft') {
+      const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
+      switchDish(nextIndex, 1);
+    }
+    if (e.key === 'ArrowRight') {
+      const nextIndex = (activeIndex + 1) % dishes.length;
+      switchDish(nextIndex, -1);
+    }
   }
   if (e.key === 'Escape') {
     closeOrderModal();
@@ -384,7 +540,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ─── Smooth scroll for nav links ──────────────────────────
+// ─── Smooth scroll for hash links ────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href').slice(1);
@@ -396,12 +552,27 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ─── Search button (placeholder UX) ──────────────────────
+// ─── Page Transition for About link ──────────────────────
+const overlay = document.getElementById('page-transition');
+
+function navigateWithTransition(href) {
+  overlay.classList.add('exit-active');
+  setTimeout(() => { window.location.href = href; }, 400);
+}
+
+document.querySelectorAll('.about-page-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateWithTransition(link.getAttribute('href'));
+  });
+});
+
+// ─── Search button ────────────────────────────────────────
 document.getElementById('search-btn').addEventListener('click', () => {
   alert('Search coming soon! Browse our menu above.');
 });
 
-// ─── Cart button ─────────────────────────────────────────
+// ─── Cart button ──────────────────────────────────────────
 document.getElementById('cart-btn').addEventListener('click', openOrderModal);
 
 // ─── Share button ─────────────────────────────────────────
@@ -421,8 +592,14 @@ document.getElementById('share-btn').addEventListener('click', async () => {
   }
 });
 
+// ─── Page enter animation ────────────────────────────────
+window.addEventListener('pageshow', () => {
+  overlay.classList.remove('exit-active', 'enter-start');
+  overlay.classList.add('enter-done');
+  setTimeout(() => overlay.classList.remove('enter-done'), 50);
+});
+
 // ─── Init ─────────────────────────────────────────────────
 mountPlate(currentPlate, dishes[0].image, `${dishes[0].titleTop} ${dishes[0].titleBottom}`);
 buildThumbs();
 renderText(dishes[0]);
-updateWhatsAppLinks();
