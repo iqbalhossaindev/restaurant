@@ -1,123 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dish Studio</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <div class="bg-orb orb-left"></div>
-      <div class="bg-orb orb-right"></div>
-
-      <header class="topbar">
-        <div class="brand">DISH<span>STUDIO</span></div>
-        <div class="top-actions">
-          <button class="icon-btn" aria-label="Search">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 0 4.026 11.602l4.436 4.436 1.414-1.414-4.436-4.436A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"/></svg>
-          </button>
-          <button class="icon-btn" aria-label="Menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v2H4V7Zm0 8v-2h16v2H4Zm0-4h16v2H4v-2Z"/></svg>
-          </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dish Studio</title>
+  <meta name="description" content="Modern food showcase website with swipe slider and responsive menu layout." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#">
+        <img src="assets/favicon.svg" alt="Dish Studio icon" class="brand-icon" />
+        <div>
+          <div class="brand-title">Dish Studio</div>
+          <div class="brand-subtitle">Menu Showcase</div>
         </div>
-      </header>
+      </a>
 
-      <main class="hero-grid">
-        <section class="dish-stage" aria-label="Featured dish display">
-          <div class="dish-layer current" id="dish-current">
-            <img src="assets/dish-lamb.svg" alt="Lamb Steak Potato" />
-          </div>
-          <div class="dish-layer incoming" id="dish-incoming" aria-hidden="true"></div>
-        </section>
+      <nav class="header-actions" aria-label="Main controls">
+        <button class="icon-btn" id="prevBtn" aria-label="Previous dish">
+          <span>‹</span>
+        </button>
+        <button class="icon-btn" id="nextBtn" aria-label="Next dish">
+          <span>›</span>
+        </button>
+      </nav>
+    </header>
 
-        <section class="hero-copy">
-          <p class="eyebrow"><span id="rank-number">#1</span> signature selection</p>
-          <h1 class="dish-title">
-            <span id="title-top">Lamb Steak</span>
-            <strong id="title-bottom">Potato</strong>
-          </h1>
-          <p class="hero-description" id="dish-description">
-            Tender cuts, creamy sides, and a rich finish styled for a warm premium table.
+    <main>
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow" id="heroTag">Best Seller</p>
+          <h1 id="heroTitle">Chicken Biryani</h1>
+          <p class="hero-subtitle" id="heroSubtitle">Signature Bowl</p>
+          <p class="hero-description" id="heroDescription">
+            Fragrant basmati rice, roasted chicken, toasted spices, and herbs.
           </p>
 
-          <div class="tag-row" id="tag-row"></div>
-
-          <div class="cta-row">
-            <button class="primary-btn">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-              Watch recipe
-            </button>
-            <button class="secondary-btn">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h-2l-1 2v2h2l2.6 5.59-1.35 2.45A1 1 0 0 0 8.12 18h10.76v-2H9.81l.88-1.6h5.71a2 2 0 0 0 1.76-1.05L21 8.27A1 1 0 0 0 20.12 7H8.53l-.94-2H7Zm2 16a2 2 0 1 0-.001 3.999A2 2 0 0 0 9 20Zm8 0a2 2 0 1 0-.001 3.999A2 2 0 0 0 17 20Z"/></svg>
-              Order now
-            </button>
+          <div class="hero-meta">
+            <div class="meta-pill">
+              <span>Price</span>
+              <strong id="heroPrice">$18</strong>
+            </div>
+            <div class="meta-pill meta-note">
+              <span>Use arrows or swipe</span>
+              <strong>Slide to change dish</strong>
+            </div>
           </div>
 
-          <div class="slider-row">
-            <button class="nav-btn" id="prev-btn" aria-label="Previous dish">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.41 7.41-1.41-1.41L7.59 12 13 17.41l1.41-1.41L10.41 12z"/></svg>
-            </button>
-            <div class="thumb-strip" id="thumb-strip"></div>
-            <button class="nav-btn" id="next-btn" aria-label="Next dish">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.59 16.59 1.41 1.41L16.41 12 11 6.59 9.59 8l4 4z"/></svg>
-            </button>
+          <div class="hero-thumbs" id="thumbs" aria-label="Dish options"></div>
+        </div>
+
+        <div class="hero-stage" id="heroStage" aria-live="polite">
+          <div class="stage-glow stage-glow-1"></div>
+          <div class="stage-glow stage-glow-2"></div>
+          <div class="image-frame">
+            <img id="heroImage" src="" alt="" class="hero-image" draggable="false" />
           </div>
-        </section>
+          <div class="swipe-hint">Swipe</div>
+        </div>
+      </section>
 
-        <aside class="info-card">
-          <div class="info-tabs">
-            <button class="tab active">Overview</button>
-            <button class="tab">Ingredients</button>
+      <section class="menu-section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Current menu</p>
+            <h2>Added menu items</h2>
           </div>
+          <p class="section-note">Responsive on mobile and desktop</p>
+        </div>
 
-          <div class="score-row">
-            <div class="score-pill" id="dish-rating">4.8</div>
-            <button class="heart-btn" aria-label="Save dish">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 21-1.45-1.32C5.4 15.02 2 11.93 2 8.15 2 5.07 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A5.99 5.99 0 0 1 16.5 3C19.58 3 22 5.07 22 8.15c0 3.78-3.4 6.87-8.55 11.54z"/></svg>
-            </button>
-          </div>
+        <div class="menu-grid" id="menuGrid"></div>
+      </section>
+    </main>
+  </div>
 
-          <h2 id="chef-name">Chef K. Semy</h2>
-          <p class="info-text" id="chef-text">
-            A composed plate with gentle richness, balanced garnish, and a soft premium finish.
-          </p>
-
-          <div class="stats-grid">
-            <div class="stat-box"><span>Style</span><strong>Modern</strong></div>
-            <div class="stat-box"><span>Course</span><strong>Main</strong></div>
-            <div class="stat-box"><span>Texture</span><strong>Soft</strong></div>
-            <div class="stat-box"><span>Serving</span><strong>Hot</strong></div>
-          </div>
-
-          <div class="social-row">
-            <button class="round-muted" aria-label="Like">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h4v11Zm2 0h6.31a2 2 0 0 0 1.96-1.61l1.2-6A2 2 0 0 0 18.51 11H15V7.5A2.5 2.5 0 0 0 12.5 5L11 12z"/></svg>
-            </button>
-            <button class="round-muted" aria-label="Rate">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.27 6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            </button>
-            <span class="social-caption">Freshly selected favourites</span>
-          </div>
-        </aside>
-      </main>
-
-      <footer class="dock">
-        <button class="dock-btn" aria-label="Meals">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h2v7a2 2 0 1 1-4 0V2h2v5h2V2Zm5 0h2v20h-2V2Zm6 0h2a3 3 0 0 1 3 3v17h-2v-7h-3V2Z"/></svg>
-        </button>
-        <button class="dock-btn" aria-label="Drinks">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10l-1 9a4 4 0 0 1-3 3.77V20h3v2H8v-2h3v-5.23A4 4 0 0 1 8 11L7 2Zm2.21 2 .67 6.05A2 2 0 0 0 11.86 12h.28a2 2 0 0 0 1.98-1.95L14.79 4H9.21Z"/></svg>
-        </button>
-        <button class="dock-btn" aria-label="Reviews">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H7l-3 3V4Zm2 2v8.17L6.17 14H18V6H6Z"/></svg>
-        </button>
-        <button class="dock-btn profile" aria-label="Profile">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4Z"/></svg>
-        </button>
-      </footer>
-    </div>
-
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
