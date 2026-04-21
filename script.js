@@ -11,7 +11,7 @@ const dishes = [
     service: 'Dine In',
     location: 'Dubai Marina, Dubai',
     description: 'Fragrant rice, tender chicken, and warm spice notes presented in a rich premium bowl.',
-    tags: ['Chef favourite', 'Premium spice', 'Dubai classic']
+    tags: ['Chef favourite', 'Premium spice', 'Dubai classic', 'AED ready']
   },
   {
     id: 'sesame-beef-bowl',
@@ -25,7 +25,7 @@ const dishes = [
     service: 'Dine In',
     location: 'Dubai Marina, Dubai',
     description: 'Tender beef, sesame, and rich savoury depth in a warm modern bowl.',
-    tags: ['Bold flavour', 'Chef grill', 'Rice bowl']
+    tags: ['Bold flavour', 'Chef grill', 'Rice bowl', 'AED ready']
   },
   {
     id: 'mushroom-garden-plate',
@@ -39,7 +39,7 @@ const dishes = [
     service: 'Dine In',
     location: 'Dubai Marina, Dubai',
     description: 'Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.',
-    tags: ['Fresh garden', 'Soft texture', 'Light finish']
+    tags: ['Fresh garden', 'Soft texture', 'Light finish', 'AED ready']
   },
   {
     id: 'chicken-pasta-bowl',
@@ -53,7 +53,7 @@ const dishes = [
     service: 'Dine In',
     location: 'Dubai Marina, Dubai',
     description: 'Creamy pasta, tender chicken, and a soft cheesy finish served in a bright hearty bowl.',
-    tags: ['Creamy pasta', 'Family pick', 'Comfort dish']
+    tags: ['Creamy pasta', 'Family pick', 'Comfort dish', 'AED ready']
   },
   {
     id: 'shrimp-noodle-bowl',
@@ -67,7 +67,7 @@ const dishes = [
     service: 'Dine In',
     location: 'Dubai Marina, Dubai',
     description: 'Springy noodles, shrimp, and wok tossed vegetables finished with a glossy savoury sauce.',
-    tags: ['Wok toss', 'Seafood', 'Popular pick']
+    tags: ['Wok toss', 'Seafood', 'Popular pick', 'AED ready']
   },
   {
     id: 'low-carb-tofu-box',
@@ -81,7 +81,7 @@ const dishes = [
     service: 'Takeaway',
     location: 'Dubai Marina, Dubai',
     description: 'Grilled tofu, noodles, and greens in a light balanced box with clean presentation.',
-    tags: ['Healthy pick', 'Protein rich', 'Light box']
+    tags: ['Healthy pick', 'Protein rich', 'Light box', 'AED ready']
   },
   {
     id: 'sweet-potato-spirals',
@@ -95,7 +95,7 @@ const dishes = [
     service: 'Takeaway',
     location: 'Dubai Marina, Dubai',
     description: 'Fresh cut sweet potato spirals with bright colour and a clean ready to cook presentation.',
-    tags: ['Fresh prep', 'Bright colour', 'Vegetable side']
+    tags: ['Fresh prep', 'Bright colour', 'Vegetable side', 'AED ready']
   },
   {
     id: 'classic-noodle-plate',
@@ -109,25 +109,22 @@ const dishes = [
     service: 'Dine In',
     location: 'Dubai Marina, Dubai',
     description: 'A light noodle plate with crisp greens and a clean minimal finish.',
-    tags: ['Simple plate', 'Light meal', 'Fresh greens']
+    tags: ['Simple plate', 'Light meal', 'Fresh greens', 'AED ready']
   }
 ];
 
 let activeIndex = 0;
 let activeTab = 'overview';
 let isAnimating = false;
-let startX = 0;
-let startY = 0;
-let pointerActive = false;
+let plateStartX = 0;
+let plateStartY = 0;
+let plateSwiping = false;
+let menuScrollTimer = null;
 
 const plateStage = document.getElementById('plate-stage');
 const currentPlate = document.getElementById('plate-current');
 const incomingPlate = document.getElementById('plate-incoming');
 const menuTrack = document.getElementById('menu-track');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const menuPrev = document.getElementById('menu-prev');
-const menuNext = document.getElementById('menu-next');
 const rankNumber = document.getElementById('rank-number');
 const titleTop = document.getElementById('title-top');
 const titleBottom = document.getElementById('title-bottom');
@@ -136,7 +133,6 @@ const tagRow = document.getElementById('tag-row');
 const pricePill = document.getElementById('price-pill');
 const locationPill = document.getElementById('location-pill');
 const dishRating = document.getElementById('dish-rating');
-const cardTitle = document.getElementById('card-title');
 const detailsCopy = document.getElementById('details-copy');
 const detailPrice = document.getElementById('detail-price');
 const detailCuisine = document.getElementById('detail-cuisine');
@@ -159,20 +155,31 @@ const orderBuilding = document.getElementById('order-building');
 const summaryUnit = document.getElementById('summary-unit');
 const summaryTotal = document.getElementById('summary-total');
 
-function mountPlate(element, dish) {
-  element.innerHTML = '';
+function getDish(index) {
+  const size = dishes.length;
+  return dishes[(index + size) % size];
+}
+
+function mountPlate(target, dish) {
+  target.innerHTML = '';
   const img = document.createElement('img');
   img.src = dish.image;
   img.alt = dish.name;
   img.draggable = false;
-  element.appendChild(img);
+  target.appendChild(img);
+}
+
+function cardAlpha(distance) {
+  const raw = 0.5 - distance * 0.05;
+  return Math.max(0.25, raw).toFixed(2);
 }
 
 function menuCardTemplate(dish, index) {
+  const distance = Math.abs(index - activeIndex);
   return `
-    <button class="menu-card ${index === activeIndex ? 'active' : ''}" data-index="${index}" type="button" aria-label="${dish.name}">
+    <button class="menu-card ${index === activeIndex ? 'active' : ''}" data-index="${index}" type="button" style="--box-alpha:${cardAlpha(distance)}" aria-label="${dish.name}">
       <img src="${dish.image}" alt="${dish.name}" />
-      <span>${dish.titleTop.replace(' ', ' ')}</span>
+      <span>${dish.titleTop}</span>
       <strong>${dish.titleBottom}</strong>
       <em>AED ${dish.price}</em>
     </button>
@@ -184,8 +191,7 @@ function buildMenu() {
   menuTrack.querySelectorAll('.menu-card').forEach((card) => {
     card.addEventListener('click', () => {
       const nextIndex = Number(card.dataset.index);
-      const direction = nextIndex >= activeIndex ? 1 : -1;
-      switchDish(nextIndex, direction);
+      switchDish(nextIndex);
     });
   });
 }
@@ -197,8 +203,23 @@ function getDetailsText(dish) {
   return dish.description;
 }
 
+function refreshMenuStyles() {
+  menuTrack.querySelectorAll('.menu-card').forEach((card, index) => {
+    const distance = Math.abs(index - activeIndex);
+    card.style.setProperty('--box-alpha', cardAlpha(distance));
+    card.classList.toggle('active', index === activeIndex);
+  });
+}
+
+function centerActiveMenuCard() {
+  const card = menuTrack.querySelector(`[data-index="${activeIndex}"]`);
+  if (!card) return;
+  const left = card.offsetLeft - (menuTrack.clientWidth - card.clientWidth) / 2;
+  menuTrack.scrollTo({ left, behavior: 'smooth' });
+}
+
 function renderDish() {
-  const dish = dishes[activeIndex];
+  const dish = getDish(activeIndex);
   rankNumber.textContent = `#${activeIndex + 1}`;
   titleTop.textContent = dish.titleTop;
   titleBottom.textContent = dish.titleBottom;
@@ -206,7 +227,6 @@ function renderDish() {
   pricePill.textContent = `AED ${dish.price}`;
   locationPill.textContent = dish.location;
   dishRating.textContent = dish.rating.toFixed(1);
-  cardTitle.textContent = 'Kestford Signature';
   detailsCopy.textContent = getDetailsText(dish);
   detailPrice.textContent = `AED ${dish.price}`;
   detailCuisine.textContent = dish.cuisine;
@@ -223,35 +243,30 @@ function renderDish() {
   });
 
   tagRow.innerHTML = '';
-  dish.tags.forEach((tag) => {
+  dish.tags.slice(0, 4).forEach((tag) => {
     const pill = document.createElement('span');
     pill.className = 'tag-pill';
     pill.textContent = tag;
     tagRow.appendChild(pill);
   });
 
-  menuTrack.querySelectorAll('.menu-card').forEach((card, index) => {
-    card.classList.toggle('active', index === activeIndex);
-  });
-
-  const activeCard = menuTrack.querySelector(`.menu-card[data-index="${activeIndex}"]`);
-  if (activeCard) {
-    activeCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-  }
+  refreshMenuStyles();
+  centerActiveMenuCard();
 }
 
-function switchDish(nextIndex, direction) {
-  if (isAnimating || nextIndex === activeIndex) return;
+function switchDish(nextIndex) {
+  const normalized = (nextIndex + dishes.length) % dishes.length;
+  if (isAnimating || normalized === activeIndex) return;
+  const nextDish = getDish(normalized);
   isAnimating = true;
-  const nextDish = dishes[nextIndex];
   mountPlate(incomingPlate, nextDish);
   incomingPlate.className = 'plate-layer incoming';
-  currentPlate.classList.remove('animate-out-left', 'animate-out-right');
+  currentPlate.classList.remove('animate-out');
   incomingPlate.classList.remove('animate-in');
   void incomingPlate.offsetWidth;
-  currentPlate.classList.add(direction >= 0 ? 'animate-out-left' : 'animate-out-right');
+  currentPlate.classList.add('animate-out');
   incomingPlate.classList.add('animate-in');
-  activeIndex = nextIndex;
+  activeIndex = normalized;
   renderDish();
   window.setTimeout(() => {
     mountPlate(currentPlate, nextDish);
@@ -259,40 +274,65 @@ function switchDish(nextIndex, direction) {
     incomingPlate.className = 'plate-layer incoming';
     incomingPlate.innerHTML = '';
     isAnimating = false;
-  }, 760);
+  }, 820);
 }
 
-function goPrev() {
-  const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
-  switchDish(nextIndex, -1);
+function nextDish() {
+  switchDish(activeIndex + 1);
 }
 
-function goNext() {
-  const nextIndex = (activeIndex + 1) % dishes.length;
-  switchDish(nextIndex, 1);
+function previousDish() {
+  switchDish(activeIndex - 1);
 }
 
-function onStart(x, y) {
-  startX = x;
-  startY = y;
-  pointerActive = true;
+function plateSwipeStart(x, y) {
+  plateStartX = x;
+  plateStartY = y;
+  plateSwiping = true;
 }
 
-function onEnd(x, y) {
-  if (!pointerActive) return;
-  pointerActive = false;
-  const dx = x - startX;
-  const dy = y - startY;
-  if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy)) {
-    if (dx < 0) goNext();
-    else goPrev();
+function plateSwipeEnd(x, y) {
+  if (!plateSwiping) return;
+  plateSwiping = false;
+  const dx = x - plateStartX;
+  const dy = y - plateStartY;
+  if (Math.abs(dx) > 34 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx < 0) nextDish();
+    else previousDish();
   }
+}
+
+function getCenteredMenuIndex() {
+  const cards = [...menuTrack.querySelectorAll('.menu-card')];
+  if (!cards.length) return activeIndex;
+  const center = menuTrack.scrollLeft + menuTrack.clientWidth / 2;
+  let bestIndex = activeIndex;
+  let bestDistance = Infinity;
+  cards.forEach((card, index) => {
+    const cardCenter = card.offsetLeft + card.clientWidth / 2;
+    const distance = Math.abs(cardCenter - center);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      bestIndex = index;
+    }
+  });
+  return bestIndex;
+}
+
+function handleMenuScroll() {
+  window.clearTimeout(menuScrollTimer);
+  menuScrollTimer = window.setTimeout(() => {
+    const centeredIndex = getCenteredMenuIndex();
+    if (centeredIndex !== activeIndex) {
+      switchDish(centeredIndex);
+    }
+  }, 90);
 }
 
 function updateOrderTotal() {
   const qty = Math.max(1, Number(orderQty.value) || 1);
   orderQty.value = String(qty);
-  const total = qty * dishes[activeIndex].price;
+  const total = qty * getDish(activeIndex).price;
   summaryTotal.textContent = `AED ${total}`;
 }
 
@@ -328,80 +368,79 @@ function animatePlateIntoButton() {
   requestAnimationFrame(() => {
     const dx = end.left + end.width / 2 - (start.left + start.width / 2);
     const dy = end.top + end.height / 2 - (start.top + start.height / 2);
-    const scale = Math.max(0.18, end.height / start.height * 0.46);
-    clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale}) rotate(-22deg)`;
+    const scale = Math.max(0.18, end.height / start.height * 0.42);
+    clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale}) rotate(-20deg)`;
     clone.style.opacity = '0.12';
   });
   window.setTimeout(() => {
     clone.remove();
     orderBtn.classList.remove('ordering');
-  }, 760);
+  }, 780);
 }
 
 function handleOrderClick() {
   animatePlateIntoButton();
   window.setTimeout(() => {
-    goNext();
-  }, 100);
+    nextDish();
+  }, 120);
   window.setTimeout(() => {
     openModal();
     orderLocation.focus();
-  }, 420);
+  }, 430);
 }
 
 function buildWhatsAppMessage(dish, qty, phone, location, building) {
   const total = dish.price * qty;
   return `Hello Kestford Restaurant, I want to order *${dish.name}*.` +
-    `\n\n*Quantity:* ${qty}` +
-    `\n*Total:* AED ${total}` +
-    `\n*Phone:* ${phone}` +
-    `\n*Location:* ${location}` +
-    `\n*Building Number:* ${building}` +
-    `\n\nPlease confirm my order.`;
-}
+    `
 
-prevBtn.addEventListener('click', goPrev);
-nextBtn.addEventListener('click', goNext);
-menuPrev.addEventListener('click', () => {
-  menuTrack.scrollBy({ left: -menuTrack.clientWidth * 0.5, behavior: 'smooth' });
-  goPrev();
-});
-menuNext.addEventListener('click', () => {
-  menuTrack.scrollBy({ left: menuTrack.clientWidth * 0.5, behavior: 'smooth' });
-  goNext();
-});
+*Quantity:* ${qty}` +
+    `
+*Total:* AED ${total}` +
+    `
+*Phone:* ${phone}` +
+    `
+*Location:* ${location}` +
+    `
+*Building Number:* ${building}` +
+    `
+
+Please confirm my order.`;
+}
 
 plateStage.addEventListener('touchstart', (event) => {
   const touch = event.changedTouches[0];
-  onStart(touch.clientX, touch.clientY);
+  plateSwipeStart(touch.clientX, touch.clientY);
 }, { passive: true });
 plateStage.addEventListener('touchend', (event) => {
   const touch = event.changedTouches[0];
-  onEnd(touch.clientX, touch.clientY);
+  plateSwipeEnd(touch.clientX, touch.clientY);
 }, { passive: true });
 plateStage.addEventListener('pointerdown', (event) => {
-  onStart(event.clientX, event.clientY);
+  plateSwipeStart(event.clientX, event.clientY);
 });
 plateStage.addEventListener('pointerup', (event) => {
-  onEnd(event.clientX, event.clientY);
+  plateSwipeEnd(event.clientX, event.clientY);
 });
 window.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowLeft') goPrev();
-  if (event.key === 'ArrowRight') goNext();
+  if (event.key === 'ArrowLeft') previousDish();
+  if (event.key === 'ArrowRight') nextDish();
   if (event.key === 'Escape') closeModal();
 });
+menuTrack.addEventListener('scroll', handleMenuScroll, { passive: true });
 
 overviewTab.addEventListener('click', () => {
   activeTab = 'overview';
   overviewTab.classList.add('active');
   detailsTab.classList.remove('active');
-  detailsCopy.textContent = getDetailsText(dishes[activeIndex]);
+  detailsCopy.textContent = getDetailsText(getDish(activeIndex));
 });
+
 detailsTab.addEventListener('click', () => {
   activeTab = 'details';
   detailsTab.classList.add('active');
   overviewTab.classList.remove('active');
-  detailsCopy.textContent = getDetailsText(dishes[activeIndex]);
+  detailsCopy.textContent = getDetailsText(getDish(activeIndex));
 });
 
 qtyMinus.addEventListener('click', () => {
@@ -429,7 +468,7 @@ orderForm.addEventListener('submit', (event) => {
     else orderBuilding.focus();
     return;
   }
-  const dish = dishes[activeIndex];
+  const dish = getDish(activeIndex);
   const message = buildWhatsAppMessage(dish, qty, phone, location, building);
   const url = `https://wa.me/15798995633?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank', 'noopener');
