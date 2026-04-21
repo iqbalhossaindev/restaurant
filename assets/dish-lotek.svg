@@ -1,1 +1,26 @@
-
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="plate2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(450 445) rotate(90) scale(360)">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e9e7e5"/>
+    </radialGradient>
+    <filter id="shadow2" x="80" y="90" width="740" height="740" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#998a7b" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow2)">
+    <circle cx="450" cy="450" r="285" fill="url(#plate2)"/>
+    <circle cx="450" cy="450" r="250" fill="#FBF9F8"/>
+  </g>
+  <ellipse cx="403" cy="410" rx="135" ry="98" transform="rotate(18 403 410)" fill="#85b56e"/>
+  <ellipse cx="508" cy="468" rx="124" ry="88" transform="rotate(-14 508 468)" fill="#709f59"/>
+  <ellipse cx="546" cy="385" rx="94" ry="66" transform="rotate(22 546 385)" fill="#9ccb71"/>
+  <ellipse cx="350" cy="540" rx="64" ry="48" fill="#c59f5d"/>
+  <ellipse cx="432" cy="572" rx="56" ry="42" fill="#b88846"/>
+  <ellipse cx="516" cy="566" rx="60" ry="44" fill="#d5b171"/>
+  <circle cx="328" cy="362" r="24" fill="#f4d166"/>
+  <circle cx="585" cy="520" r="22" fill="#f1cc52"/>
+  <circle cx="646" cy="430" r="20" fill="#e26751"/>
+  <path d="M265 468c65 32 155 40 235 22" stroke="#785334" stroke-width="26" stroke-linecap="round" opacity="0.35"/>
+  <path d="M516 324c40 10 78 28 111 50" stroke="#f6f1e8" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+</svg>
