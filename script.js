@@ -1,185 +1,198 @@
-
-const items = [
+const dishes = [
   {
-    "slug": "mushroom-stir-fry",
-    "title": "Mushroom Stir Fry",
-    "subtitle": "Chef Special",
-    "desc": "Savory mushrooms, chicken bites, carrots, and spring onion in a rich glossy sauce.",
-    "price": "$16",
-    "tag": "Popular"
+    id: 'lamb',
+    titleTop: 'Lamb Steak',
+    titleBottom: 'Potato',
+    image: 'assets/dish-lamb.svg',
+    rating: '4.8',
+    chef: 'Chef K. Semy',
+    description:
+      'Tender cuts, creamy sides, and a plated finish made to feel refined, warm, and memorable.',
+    tags: ['Most loved dish', 'Creamy side', 'Premium cut'],
+    style: 'Modern',
+    course: 'Main',
+    texture: 'Soft',
+    serving: 'Hot',
   },
   {
-    "slug": "sweet-potato-spirals",
-    "title": "Sweet Potato Spirals",
-    "subtitle": "Fresh Pack",
-    "desc": "Bright spiral cut sweet potato, packed fresh and ready to cook.",
-    "price": "$8",
-    "tag": "Fresh"
+    id: 'lotek',
+    titleTop: 'Lotek',
+    titleBottom: 'Perkedel',
+    image: 'assets/dish-lotek.svg',
+    rating: '4.9',
+    chef: 'Chef Rina',
+    description:
+      'Fresh greens, bright garnish, and crisp golden bites plated with a clean and cheerful touch.',
+    tags: ['Chef pick', 'Fresh daily', 'Bright flavour'],
+    style: 'Fresh',
+    course: 'Lunch',
+    texture: 'Crisp',
+    serving: 'Warm',
   },
   {
-    "slug": "chicken-biryani",
-    "title": "Chicken Biryani",
-    "subtitle": "Signature Bowl",
-    "desc": "Fragrant basmati rice, roasted chicken, toasted spices, and herbs.",
-    "price": "$18",
-    "tag": "Best Seller"
+    id: 'martabak',
+    titleTop: 'Martabak',
+    titleBottom: 'Pakadin',
+    image: 'assets/dish-martabak.svg',
+    rating: '4.7',
+    chef: 'Chef Arman',
+    description:
+      'Golden layers, soft centers, and a rich finish styled with contrast and gentle warmth.',
+    tags: ['Street classic', 'Soft texture', 'Best seller'],
+    style: 'Golden',
+    course: 'Snack',
+    texture: 'Layered',
+    serving: 'Hot',
   },
   {
-    "slug": "beef-bowl",
-    "title": "Beef Bowl",
-    "subtitle": "House Favorite",
-    "desc": "Tender beef strips, sesame seeds, greens, and pickled vegetables.",
-    "price": "$17",
-    "tag": "Hot"
+    id: 'sup',
+    titleTop: 'Sup Asli',
+    titleBottom: 'Wonogiri',
+    image: 'assets/dish-soup.svg',
+    rating: '4.6',
+    chef: 'Chef Dimas',
+    description:
+      'A comforting bowl with a smooth broth, light garnish, and a calm home style mood.',
+    tags: ['Comfort food', 'Warm broth', 'Family recipe'],
+    style: 'Classic',
+    course: 'Soup',
+    texture: 'Silky',
+    serving: 'Hot',
   },
-  {
-    "slug": "garden-noodles",
-    "title": "Garden Noodles",
-    "subtitle": "Light Plate",
-    "desc": "Soft noodles with crisp green lettuce, simple and fresh.",
-    "price": "$12",
-    "tag": "New"
-  }
 ];
 
-const heroTitle = document.getElementById('heroTitle');
-const heroSubtitle = document.getElementById('heroSubtitle');
-const heroDescription = document.getElementById('heroDescription');
-const heroPrice = document.getElementById('heroPrice');
-const heroTag = document.getElementById('heroTag');
-const heroImage = document.getElementById('heroImage');
-const heroStage = document.getElementById('heroStage');
-const thumbs = document.getElementById('thumbs');
-const menuGrid = document.getElementById('menuGrid');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-let currentIndex = 0;
-let touchStartX = 0;
-let touchEndX = 0;
+let activeIndex = 0;
 let isAnimating = false;
 
-function renderThumbs() {
-  thumbs.innerHTML = items.map((item, index) => `
-    <button class="thumb ${index === currentIndex ? 'active' : ''}" data-index="${index}" aria-label="Show ${item.title}">
-      <div class="thumb-image-wrap">
-        <img src="assets/menu/${item.slug}.png" alt="${item.title}" loading="lazy" />
-      </div>
-      <div class="thumb-title">${item.title}</div>
-    </button>
-  `).join('');
+const currentPlate = document.getElementById('plate-current');
+const incomingPlate = document.getElementById('plate-incoming');
+const rankNumber = document.getElementById('rank-number');
+const titleTop = document.getElementById('title-top');
+const titleBottom = document.getElementById('title-bottom');
+const dishDescription = document.getElementById('dish-description');
+const tagRow = document.getElementById('tag-row');
+const rating = document.getElementById('dish-rating');
+const chefName = document.getElementById('chef-name');
+const chefText = document.getElementById('chef-text');
+const thumbStrip = document.getElementById('thumb-strip');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const statBoxes = Array.from(document.querySelectorAll('.stat-box strong'));
+const tabs = Array.from(document.querySelectorAll('.tab'));
 
-  thumbs.querySelectorAll('.thumb').forEach(btn => {
-    btn.addEventListener('click', () => changeDish(Number(btn.dataset.index)));
+function buildThumbs() {
+  thumbStrip.innerHTML = '';
+
+  dishes.forEach((dish, index) => {
+    const button = document.createElement('button');
+    button.className = 'thumb-card';
+    if (index === activeIndex) button.classList.add('active');
+    button.setAttribute('aria-label', `${dish.titleTop} ${dish.titleBottom}`);
+    button.innerHTML = `
+      <img src="${dish.image}" alt="${dish.titleTop} ${dish.titleBottom}" />
+      <span>${dish.titleTop}</span>
+      <strong>${dish.titleBottom}</strong>
+    `;
+    button.addEventListener('click', () => switchDish(index, index > activeIndex ? 1 : -1));
+    thumbStrip.appendChild(button);
   });
 }
 
-function renderMenuGrid() {
-  menuGrid.innerHTML = items.map(item => `
-    <article class="menu-card">
-      <div class="menu-card-image">
-        <img src="assets/menu/${item.slug}.png" alt="${item.title}" loading="lazy" />
-      </div>
-      <div class="menu-card-body">
-        <div class="menu-topline">
-          <h3 class="menu-title">${item.title}</h3>
-          <div class="menu-price">${item.price}</div>
-        </div>
-        <span class="menu-tag">${item.tag}</span>
-        <p class="menu-desc">${item.desc}</p>
-      </div>
-    </article>
-  `).join('');
+function renderText(dish) {
+  rankNumber.textContent = `#${activeIndex + 1}`;
+  titleTop.textContent = dish.titleTop;
+  titleBottom.textContent = dish.titleBottom;
+  dishDescription.textContent = dish.description;
+  rating.textContent = dish.rating;
+  chefName.textContent = dish.chef;
+  chefText.textContent = dish.description;
+  statBoxes[0].textContent = dish.style;
+  statBoxes[1].textContent = dish.course;
+  statBoxes[2].textContent = dish.texture;
+  statBoxes[3].textContent = dish.serving;
+
+  [titleTop, titleBottom, dishDescription, rating, chefName, chefText].forEach((node) => {
+    node.classList.remove('fade-swap');
+    void node.offsetWidth;
+    node.classList.add('fade-swap');
+  });
+
+  tagRow.innerHTML = '';
+  dish.tags.forEach((tag) => {
+    const pill = document.createElement('span');
+    pill.className = 'tag-pill';
+    pill.textContent = tag;
+    tagRow.appendChild(pill);
+  });
+
+  Array.from(thumbStrip.children).forEach((thumb, index) => {
+    thumb.classList.toggle('active', index === activeIndex);
+  });
 }
 
-function setTextContent(item) {
-  heroTitle.textContent = item.title;
-  heroSubtitle.textContent = item.subtitle;
-  heroDescription.textContent = item.desc;
-  heroPrice.textContent = item.price;
-  heroTag.textContent = item.tag;
+function mountPlate(element, src, alt) {
+  element.innerHTML = '';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  element.appendChild(img);
 }
 
-function animateToImage(item) {
-  const oldImg = heroImage.cloneNode(true);
-  oldImg.className = 'hero-image-clone exit-left';
-  heroStage.querySelector('.image-frame').appendChild(oldImg);
-
-  heroImage.classList.remove('enter-from-top');
-  heroImage.src = `assets/menu/${item.slug}.png`;
-  heroImage.alt = item.title;
-
-  void heroImage.offsetWidth;
-  heroImage.classList.add('enter-from-top');
-
-  oldImg.addEventListener('animationend', () => oldImg.remove(), { once: true });
-}
-
-function changeDish(nextIndex) {
-  if (isAnimating || nextIndex === currentIndex) return;
+function switchDish(nextIndex, direction = 1) {
+  if (isAnimating || nextIndex === activeIndex) return;
   isAnimating = true;
-  currentIndex = (nextIndex + items.length) % items.length;
-  const item = items[currentIndex];
 
-  setTextContent(item);
-  animateToImage(item);
-  renderThumbs();
+  const nextDish = dishes[nextIndex];
+  const outClass = direction >= 0 ? 'animate-out-left' : 'animate-out-right';
 
-  window.clearTimeout(changeDish._timer);
-  changeDish._timer = window.setTimeout(() => {
+  mountPlate(incomingPlate, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
+  incomingPlate.className = 'plate-layer incoming';
+  currentPlate.classList.remove('animate-out-left', 'animate-out-right');
+  incomingPlate.classList.remove('animate-in');
+
+  void incomingPlate.offsetWidth;
+  currentPlate.classList.add(outClass);
+  incomingPlate.classList.add('animate-in');
+
+  activeIndex = nextIndex;
+  renderText(nextDish);
+
+  setTimeout(() => {
+    mountPlate(currentPlate, nextDish.image, `${nextDish.titleTop} ${nextDish.titleBottom}`);
+    currentPlate.className = 'plate-layer current';
+    incomingPlate.className = 'plate-layer incoming';
+    incomingPlate.innerHTML = '';
     isAnimating = false;
   }, 720);
 }
 
-function nextDish() {
-  changeDish(currentIndex + 1);
-}
-
-function prevDish() {
-  changeDish(currentIndex - 1);
-}
-
-function handleSwipe() {
-  const delta = touchEndX - touchStartX;
-  if (Math.abs(delta) < 40) return;
-  if (delta < 0) nextDish();
-  else prevDish();
-}
-
-heroStage.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].clientX;
-}, { passive: true });
-
-heroStage.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].clientX;
-  handleSwipe();
-}, { passive: true });
-
-let mouseDownX = null;
-heroStage.addEventListener('pointerdown', e => {
-  mouseDownX = e.clientX;
-});
-heroStage.addEventListener('pointerup', e => {
-  if (mouseDownX === null) return;
-  touchStartX = mouseDownX;
-  touchEndX = e.clientX;
-  mouseDownX = null;
-  handleSwipe();
+prevBtn.addEventListener('click', () => {
+  const nextIndex = (activeIndex - 1 + dishes.length) % dishes.length;
+  switchDish(nextIndex, -1);
 });
 
-prevBtn.addEventListener('click', prevDish);
-nextBtn.addEventListener('click', nextDish);
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') prevDish();
-  if (e.key === 'ArrowRight') nextDish();
+nextBtn.addEventListener('click', () => {
+  const nextIndex = (activeIndex + 1) % dishes.length;
+  switchDish(nextIndex, 1);
 });
 
-(function init() {
-  renderMenuGrid();
-  renderThumbs();
-  setTextContent(items[currentIndex]);
-  heroImage.src = `assets/menu/${items[currentIndex].slug}.png`;
-  heroImage.alt = items[currentIndex].title;
-  heroImage.classList.add('enter-from-top');
-})();
+tabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
+    tabs.forEach((item) => item.classList.remove('active'));
+    tab.classList.add('active');
+
+    const dish = dishes[activeIndex];
+    if (index === 0) {
+      chefText.textContent = dish.description;
+    } else {
+      chefText.textContent = `${dish.tags[0]}, ${dish.tags[1].toLowerCase()}, and ${dish.tags[2].toLowerCase()} presented with clean modern styling.`;
+    }
+    chefText.classList.remove('fade-swap');
+    void chefText.offsetWidth;
+    chefText.classList.add('fade-swap');
+  });
+});
+
+mountPlate(currentPlate, dishes[0].image, `${dishes[0].titleTop} ${dishes[0].titleBottom}`);
+buildThumbs();
+renderText(dishes[0]);
