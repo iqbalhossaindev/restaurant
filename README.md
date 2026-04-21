@@ -1,13 +1,17 @@
-Kestford Restaurant website
+Kestford Restaurant Website
 
-Files:
-- index.html
-- styles.css
-- script.js
-- about/index.html
-- assets/dishes/
-- assets/favicon.svg
+Pages
+- /index.html
+- /about/
 
-Use:
-Open index.html or upload the folder to your hosting.
-The About page is at /about/ when hosted.
+Key features
+- Locked top dish area with smooth swipe and button navigation
+- Menu slider with swipe plus left/right controls
+- WhatsApp order modal with auto-written order message
+- Floating WhatsApp greeting button
+- Mobile friendly and desktop friendly layout
+
+Contact
+- Email: hello@kestford.com
+- Phone and WhatsApp: +15798995633
+- Location: Dubai Marina Walk, Dubai, UAE
