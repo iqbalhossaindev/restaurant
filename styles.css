@@ -113,11 +113,11 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 }
 .cart-peek {
   position: absolute;
-  top: -10%;
+  top: 4%;
   left: 50%;
   transform: translateX(-50%);
-  width: 56%;
-  height: 34%;
+  width: 40%;
+  height: 20%;
   background-position: center top;
   background-repeat: no-repeat;
   background-size: contain;
@@ -175,47 +175,63 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 4px;
+  gap: clamp(10px, 1.4vw, 16px);
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  padding-top: 48px;
+  padding: 44px 24px 18px;
 }
 .plate-name-line {
   width: 100%;
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: clamp(10px, 1.6vw, 18px);
-  line-height: 0.9;
+  gap: clamp(8px, 1.15vw, 16px);
+  line-height: 0.86;
   text-transform: uppercase;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.08em;
   overflow: hidden;
   white-space: nowrap;
+  transform: scale(var(--line-scale, 1));
+  transform-origin: center center;
 }
-.plate-name-line.line-top {
-  font-size: clamp(3.6rem, 11vw, 8.2rem);
-  font-weight: 300;
-  color: rgba(72, 63, 58, 0.19);
-}
+.plate-name-line.line-top,
 .plate-name-line.line-bottom {
-  font-size: clamp(3.7rem, 11.4vw, 8.7rem);
+  font-size: clamp(3.55rem, 10.6vw, 7.2rem);
   font-weight: 900;
-  color: rgba(72, 63, 58, 0.26);
 }
 .word-flip {
   display: inline-flex;
   perspective: 900px;
+  position: relative;
 }
 .word-flip > span {
   display: inline-block;
-  transform-origin: center bottom;
-  animation: wordFlipIn 520ms cubic-bezier(0.2, 0.82, 0.2, 1) both;
-  animation-delay: var(--delay, 0ms);
+  transform-origin: center center;
+  color: transparent;
+  background-image: linear-gradient(90deg,
+    rgba(72, 63, 58, 0.50) 0%,
+    rgba(72, 63, 58, 0.50) 34%,
+    rgba(255,255,255,0.94) 50%,
+    rgba(72, 63, 58, 0.50) 66%,
+    rgba(72, 63, 58, 0.50) 100%);
+  background-size: 220% 100%;
+  background-position: 140% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation:
+    wordFlipIn 520ms cubic-bezier(0.2, 0.82, 0.2, 1) both,
+    innerSweep 5s linear infinite;
+  animation-delay: var(--delay, 0ms), 0s;
 }
 @keyframes wordFlipIn {
-  0% { opacity: 0; transform: rotateX(-92deg) translateY(38px); }
+  0% { opacity: 0; transform: rotateX(-92deg) translateY(30px); }
   100% { opacity: 1; transform: rotateX(0deg) translateY(0); }
+}
+@keyframes innerSweep {
+  0%, 12% { background-position: 140% 0; }
+  40% { background-position: -30% 0; }
+  100% { background-position: -30% 0; }
 }
 .plate-shadow {
   position: absolute;
@@ -231,8 +247,8 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 }
 .plate-layer {
   position: absolute;
-  top: 42px;
-  width: clamp(250px, 27vw, 348px);
+  top: 48px;
+  width: clamp(268px, 27.8vw, 360px);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
@@ -253,13 +269,15 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 .plate-helper {
   position: absolute;
   right: max(12px, calc(50% - 404px));
-  top: 34px;
+  top: 42px;
   margin: 0;
+  max-width: 180px;
   font-size: 0.72rem;
   line-height: 1.2;
   text-align: right;
   letter-spacing: 0.02em;
   color: rgba(92, 82, 76, 0.72);
+  z-index: 3;
 }
 @keyframes plateIn {
   0% { opacity: 0; transform: translateY(-132%) rotate(20deg) scale(0.9); }
@@ -356,18 +374,11 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   font-size: clamp(3.2rem, 7vw, 6.8rem);
   font-weight: 300;
   color: #8a817c;
-  animation: rightToLeftGlow 5.2s ease-in-out infinite;
 }
 .dish-title strong {
   font-size: clamp(3.3rem, 7.1vw, 7rem);
   font-weight: 900;
   color: #4b423e;
-  animation: rightToLeftGlow 5.2s ease-in-out infinite 0.18s;
-}
-@keyframes rightToLeftGlow {
-  0%, 100% { text-shadow: 12px 0 18px rgba(255,255,255,0.32), 0 0 0 rgba(255,255,255,0); }
-  45% { text-shadow: 0 0 12px rgba(255,255,255,0.2); }
-  70% { text-shadow: -10px 0 18px rgba(255,255,255,0.30); }
 }
 .hero-description,
 .details-copy,
@@ -707,19 +718,19 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   .modal-close { width: 50px; height: 50px; }
   .plate-section { min-height: 350px; }
   .plate-stage { min-height: 340px; }
-  .plate-name-backdrop { padding-top: 72px; }
-  .plate-name-line.line-top { font-size: clamp(4rem, 18vw, 7rem); }
-  .plate-name-line.line-bottom { font-size: clamp(4.3rem, 19vw, 7.4rem); }
+  .plate-name-backdrop { padding: 74px 12px 14px; }
+  .plate-name-line.line-top,
+  .plate-name-line.line-bottom { font-size: clamp(3.7rem, 17vw, 6.3rem); }
   .plate-layer {
-    top: 68px;
-    width: min(76vw, 340px);
+    top: 70px;
+    width: min(76vw, 338px);
   }
   .plate-shadow {
     bottom: 26px;
     width: min(56vw, 250px);
   }
   .plate-helper {
-    top: 22px;
+    top: 28px;
     right: 10px;
     max-width: 150px;
     font-size: 0.68rem;
@@ -812,12 +823,12 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   .chip-link { padding: 11px 16px; }
   .plate-section { min-height: 320px; }
   .plate-stage { min-height: 312px; }
-  .plate-name-backdrop { padding-top: 78px; }
-  .plate-name-line { justify-content: flex-start; padding-left: 6px; }
-  .plate-name-line.line-top { font-size: clamp(3.8rem, 20vw, 5.6rem); }
-  .plate-name-line.line-bottom { font-size: clamp(4rem, 21vw, 5.9rem); }
+  .plate-name-backdrop { padding: 78px 8px 14px; }
+  .plate-name-line { justify-content: center; gap: 6px; }
+  .plate-name-line.line-top,
+  .plate-name-line.line-bottom { font-size: clamp(3.2rem, 18vw, 5.1rem); }
   .plate-layer {
-    top: 74px;
+    top: 72px;
     width: min(78vw, 320px);
   }
   .plate-helper {

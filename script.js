@@ -122,8 +122,17 @@ function mountPlate(target, dish) {
   target.appendChild(img);
 }
 
+function backdropScale(text) {
+  const len = text.replace(/\s+/g, '').length;
+  if (len >= 18) return 0.70;
+  if (len >= 15) return 0.78;
+  if (len >= 12) return 0.88;
+  return 1;
+}
+
 function buildFlipLine(element, text) {
   element.innerHTML = '';
+  element.style.setProperty('--line-scale', String(backdropScale(text)));
   text.split(' ').forEach((word, index) => {
     const outer = document.createElement('span');
     outer.className = 'word-flip';
@@ -217,7 +226,7 @@ function renderDish() {
   cardTitle.textContent = 'Kestford Signature';
 
   tagRow.innerHTML = '';
-  [...dish.tags, `${dish.calories} Cal`].forEach((tag) => {
+  [...dish.tags, `Cal ${dish.calories}`].forEach((tag) => {
     const pill = document.createElement('span');
     pill.className = 'tag-pill';
     pill.textContent = tag;
@@ -371,7 +380,7 @@ function syncOrderSummary() {
   const cartItems = getCartItems();
   if (cartItems.length) {
     const selected = getSelectedCartItem();
-    orderDish.value = cartSummaryText();
+    orderDish.value = selected ? selected.dish.name : cartSummaryText();
     orderQty.value = String(selected.quantity);
     summaryUnit.textContent = `AED ${selected.dish.price}`;
     summaryTotal.textContent = `AED ${getCartTotal()}`;
