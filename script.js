@@ -99,6 +99,22 @@ function describeArc(cx, cy, rx, ry, startAngle, endAngle, sweepFlag = 1) {
   return `M ${start.x.toFixed(2)} ${start.y.toFixed(2)} A ${rx.toFixed(2)} ${ry.toFixed(2)} 0 ${largeArcFlag} ${sweepFlag} ${end.x.toFixed(2)} ${end.y.toFixed(2)}`;
 }
 
+function describeRectSegment(x, y, w, h, r, side) {
+  const left = x;
+  const right = x + w;
+  const top = y;
+  const bottom = y + h;
+  if (side === 'top') return `M ${(left + r).toFixed(2)} ${top.toFixed(2)} H ${(right - r).toFixed(2)}`;
+  if (side === 'right') return `M ${right.toFixed(2)} ${(top + r).toFixed(2)} V ${(bottom - r).toFixed(2)}`;
+  if (side === 'bottom') return `M ${(right - r).toFixed(2)} ${bottom.toFixed(2)} H ${(left + r).toFixed(2)}`;
+  return `M ${left.toFixed(2)} ${(bottom - r).toFixed(2)} V ${(top + r).toFixed(2)}`;
+}
+
+function getOrbitShape(dish) {
+  if (dish.id === 'low-carb-tofu-box' || dish.id === 'sweet-potato-spirals') return 'rect';
+  return 'round';
+}
+
 function updatePlateOrbit() {
   const dish = getActiveDish();
   const stageRect = plateStage.getBoundingClientRect();
@@ -112,15 +128,33 @@ function updatePlateOrbit() {
   const visibleWidth = naturalWidth * scale;
   const visibleHeight = naturalHeight * scale;
   const centerY = (currentPlate.offsetTop + frameSize / 2) / stageRect.height * 100;
-  const rx = Math.min(42, (visibleWidth / stageRect.width) * 50 + 4.6);
-  const ry = Math.min(37.5, (visibleHeight / stageRect.height) * 50 + 5.1);
-  const cx = 50;
-  const cy = centerY;
+  const visibleWidthPct = visibleWidth / stageRect.width * 100;
+  const visibleHeightPct = visibleHeight / stageRect.height * 100;
+  const shape = getOrbitShape(dish);
+  plateStage.dataset.shape = shape;
 
-  orbitTopPath.setAttribute('d', describeArc(cx, cy, rx, ry, -72, 72, 1));
-  orbitRightPath.setAttribute('d', describeArc(cx, cy, rx + 0.8, ry + 0.6, 34, 146, 1));
-  orbitBottomPath.setAttribute('d', describeArc(cx, cy, rx + 0.2, ry + 0.8, 248, 112, 0));
-  orbitLeftPath.setAttribute('d', describeArc(cx, cy, rx + 0.8, ry + 0.6, 326, 214, 0));
+  if (shape === 'rect') {
+    const padX = 1.6;
+    const padY = 1.8;
+    const x = 50 - visibleWidthPct / 2 - padX;
+    const y = centerY - visibleHeightPct / 2 - padY;
+    const w = visibleWidthPct + padX * 2;
+    const h = visibleHeightPct + padY * 2;
+    const radius = Math.min(4.8, w * 0.08, h * 0.08);
+    orbitTopPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'top'));
+    orbitRightPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'right'));
+    orbitBottomPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'bottom'));
+    orbitLeftPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'left'));
+  } else {
+    const rx = visibleWidthPct / 2 + 1.9;
+    const ry = visibleHeightPct / 2 + 2.0;
+    const cx = 50;
+    const cy = centerY;
+    orbitTopPath.setAttribute('d', describeArc(cx, cy, rx, ry, -60, 60, 1));
+    orbitRightPath.setAttribute('d', describeArc(cx, cy, rx + 0.45, ry + 0.4, 28, 152, 1));
+    orbitBottomPath.setAttribute('d', describeArc(cx, cy, rx + 0.2, ry + 0.2, 242, 118, 0));
+    orbitLeftPath.setAttribute('d', describeArc(cx, cy, rx + 0.45, ry + 0.4, 332, 208, 0));
+  }
 
   orbitTopText.textContent = dish.name.toUpperCase();
   orbitRightText.textContent = `CALORIES: ${dish.calories} / PROTEIN: ${dish.protein}G`;
@@ -128,8 +162,13 @@ function updatePlateOrbit() {
   orbitLeftText.textContent = `ORIGIN: ${dish.origin.toUpperCase()}`;
 }
 
+let orbitFrame = null;
 function refreshPlateOrbit() {
-  requestAnimationFrame(() => requestAnimationFrame(updatePlateOrbit));
+  if (orbitFrame) cancelAnimationFrame(orbitFrame);
+  orbitFrame = requestAnimationFrame(() => {
+    orbitFrame = null;
+    updatePlateOrbit();
+  });
 }
 
 function getDish(index) {
@@ -273,7 +312,7 @@ function switchDish(nextIndex) {
     incomingPlate.innerHTML = '';
     isAnimating = false;
     refreshPlateOrbit();
-  }, 900);
+  }, 620);
 }
 
 function nextDish() { switchDish(activeIndex + 1); }
@@ -326,7 +365,7 @@ function animateImageToTarget(imageSrc, sourceRect, targetRect, extraClass = '')
     clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale}) rotate(-14deg)`;
     clone.style.opacity = '0.14';
   });
-  window.setTimeout(() => clone.remove(), 760);
+  window.setTimeout(() => clone.remove(), 560);
 }
 
 function addDishToCart(dish = getActiveDish(), sourceRect = null) {
@@ -341,9 +380,8 @@ function addDishToCart(dish = getActiveDish(), sourceRect = null) {
 }
 
 function handlePlateDoubleTap() {
-  const img = currentPlate.querySelector('img');
-  if (!img) return;
-  addDishToCart(getActiveDish(), img.getBoundingClientRect());
+  plateStage.classList.add('show-add-hint');
+  window.setTimeout(() => plateStage.classList.remove('show-add-hint'), 1400);
 }
 
 function cartSummaryText() {
@@ -430,25 +468,19 @@ function buildWhatsAppMessage(phone, location, building) {
   return `Hello Kestford Restaurant, I want to order ${items.length ? 'these items' : '*'+getActiveDish().name+'*'}.\n\n${items.length ? lines + '\n\n' : ''}*Quantity:* ${items.length ? getCartCount() : orderQty.value}\n*Total:* AED ${total}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
 }
 
-plateStage.addEventListener('touchstart', (event) => {
-  const touch = event.changedTouches[0];
-  plateSwipeStart(touch.clientX, touch.clientY);
-}, { passive: true });
+plateStage.addEventListener('pointerdown', (event) => {
+  plateSwipeStart(event.clientX, event.clientY);
+});
 
-plateStage.addEventListener('touchend', (event) => {
-  const touch = event.changedTouches[0];
-  const swiped = plateSwipeEnd(touch.clientX, touch.clientY);
-  const now = Date.now();
-  if (!swiped && now - lastPlateTap < 280) handlePlateDoubleTap();
-  lastPlateTap = now;
-}, { passive: true });
-
-plateStage.addEventListener('pointerdown', (event) => plateSwipeStart(event.clientX, event.clientY));
 plateStage.addEventListener('pointerup', (event) => {
   const swiped = plateSwipeEnd(event.clientX, event.clientY);
   const now = Date.now();
-  if (!swiped && event.pointerType !== 'touch' && now - lastPlateTap < 280) handlePlateDoubleTap();
+  if (!swiped && now - lastPlateTap < 300) handlePlateDoubleTap();
   lastPlateTap = now;
+});
+
+plateStage.addEventListener('pointercancel', () => {
+  plateSwiping = false;
 });
 
 overviewTab.addEventListener('click', () => {

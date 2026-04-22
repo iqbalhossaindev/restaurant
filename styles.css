@@ -7,8 +7,8 @@
   --dark: #151010;
   --light-green: #def3df;
   --wa: #25d366;
-  --shadow-soft: 0 14px 32px rgba(52, 34, 24, 0.08);
-  --shadow-card: 0 22px 60px rgba(52, 34, 24, 0.1);
+  --shadow-soft: 0 10px 24px rgba(52, 34, 24, 0.06);
+  --shadow-card: 0 18px 42px rgba(52, 34, 24, 0.08);
   --radius-xl: 34px;
   --radius-lg: 28px;
   --radius-md: 22px;
@@ -23,7 +23,7 @@ html, body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-body { overflow-x: hidden; }
+body { overflow-x: hidden; overscroll-behavior-y: none; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 button { border: 0; cursor: pointer; }
@@ -142,7 +142,7 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 
 .plate-section {
   position: relative;
-  min-height: 448px;
+  min-height: 462px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -157,17 +157,18 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   touch-action: pan-y;
   user-select: none;
   overflow: visible;
+  contain: layout paint;
 }
 .plate-shadow {
   position: absolute;
   left: 50%;
   bottom: 54px;
-  width: min(50vw, 310px);
-  height: 46px;
+  width: min(46vw, 286px);
+  height: 34px;
   transform: translateX(-50%);
   border-radius: 999px;
-  background: radial-gradient(circle at center, rgba(58, 40, 30, 0.28) 0%, rgba(58, 40, 30, 0.14) 42%, rgba(58, 40, 30, 0.02) 70%, rgba(58, 40, 30, 0) 80%);
-  filter: blur(14px);
+  background: radial-gradient(circle at center, rgba(58, 40, 30, 0.22) 0%, rgba(58, 40, 30, 0.1) 38%, rgba(58, 40, 30, 0.02) 68%, rgba(58, 40, 30, 0) 82%);
+  filter: blur(10px);
   z-index: 0;
 }
 .plate-orbit-info {
@@ -180,20 +181,26 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   width: 100%;
   height: 100%;
   overflow: visible;
+  contain: layout paint;
 }
 .orbit-text {
   fill: #4a413d;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 500;
+  text-rendering: geometricPrecision;
 }
-.orbit-top { font-size: 7.8px; font-weight: 700; letter-spacing: 0.065em; }
-.orbit-right, .orbit-left { font-size: 4.2px; fill: #6f6661; letter-spacing: 0.08em; }
-.orbit-bottom { font-size: 6.1px; font-weight: 700; fill: #403733; letter-spacing: 0.06em; }
+.orbit-top { font-size: 6.9px; font-weight: 700; letter-spacing: 0.055em; }
+.orbit-right, .orbit-left { font-size: 3.9px; fill: #6f6661; letter-spacing: 0.07em; }
+.orbit-bottom { font-size: 5.45px; font-weight: 700; fill: #403733; letter-spacing: 0.05em; }
+.plate-stage[data-shape="rect"] .orbit-top { font-size: 5.2px; letter-spacing: 0.04em; }
+.plate-stage[data-shape="rect"] .orbit-right,
+.plate-stage[data-shape="rect"] .orbit-left { font-size: 3.45px; }
+.plate-stage[data-shape="rect"] .orbit-bottom { font-size: 4.5px; }
 .plate-layer {
   position: absolute;
   top: 44px;
-  width: clamp(250px, 28vw, 360px);
+  width: clamp(250px, 27vw, 348px);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
@@ -205,11 +212,11 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 24px 24px rgba(65, 44, 29, 0.14)) drop-shadow(0 8px 10px rgba(0,0,0,0.08));
+  filter: drop-shadow(0 16px 18px rgba(65, 44, 29, 0.12)) drop-shadow(0 6px 8px rgba(0,0,0,0.07));
 }
 .plate-layer.incoming { opacity: 0; pointer-events: none; }
-.plate-layer.animate-in { animation: plateIn 900ms cubic-bezier(0.18, 0.84, 0.22, 1) forwards; }
-.plate-layer.animate-out { animation: plateOut 900ms cubic-bezier(0.36, 0.04, 0.18, 1) forwards; }
+.plate-layer.animate-in { animation: plateIn 620ms cubic-bezier(0.18, 0.84, 0.22, 1) forwards; will-change: transform, opacity; }
+.plate-layer.animate-out { animation: plateOut 620ms cubic-bezier(0.36, 0.04, 0.18, 1) forwards; will-change: transform, opacity; }
 .plate-helper {
   position: absolute;
   right: max(16px, calc(50% - 380px));
@@ -219,6 +226,7 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   letter-spacing: 0.02em;
   color: rgba(92, 82, 76, 0.72);
 }
+.plate-stage.show-add-hint .plate-helper { color: rgba(74, 65, 61, 0.96); }
 
 @keyframes plateIn {
   0% { opacity: 0; transform: translateY(-150%) rotate(26deg) scale(0.88); }
@@ -241,6 +249,8 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 .menu-track {
   display: grid;
   grid-auto-flow: column;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
   grid-auto-columns: calc((100% - 4 * 14px) / 5.45);
   gap: 14px;
   padding: 0 16px;
@@ -255,11 +265,11 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   padding: 16px 10px 18px;
   text-align: center;
   background: rgba(255, 255, 255, var(--box-alpha, 0.34));
-  transition: transform 220ms ease, background 220ms ease, opacity 220ms ease, box-shadow 220ms ease;
+  transition: transform 180ms ease, background 180ms ease, opacity 180ms ease, box-shadow 180ms ease;
 }
 .menu-card.active {
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4), 0 18px 24px rgba(65, 50, 39, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 12px 18px rgba(65, 50, 39, 0.07);
 }
 .menu-card img {
   width: 92px;
@@ -409,7 +419,7 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   padding: 16px 18px;
   border-radius: 32px;
   background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(10px);
   box-shadow: var(--shadow-card);
 }
 .details-head,
@@ -487,8 +497,8 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(67, 233, 123, 0.88) 0%, rgba(37, 211, 102, 0.94) 100%);
   color: #fff;
-  box-shadow: 0 18px 36px rgba(37, 211, 102, 0.22), inset 0 1px 0 rgba(255,255,255,0.26);
-  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.18), inset 0 1px 0 rgba(255,255,255,0.22);
+  backdrop-filter: blur(10px) saturate(130%);
 }
 .floating-whatsapp svg { width: 24px; height: 24px; }
 
@@ -518,7 +528,7 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   padding: 18px;
   border-radius: 30px;
   background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.58) 100%);
-  backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(12px) saturate(122%);
   box-shadow: 0 24px 60px rgba(31, 20, 15, 0.2), inset 0 1px 0 rgba(255,255,255,0.45);
 }
 .order-modal.pop-in { animation: modalPop 320ms cubic-bezier(0.2,0.8,0.2,1); }
@@ -598,7 +608,7 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   position: fixed;
   z-index: 24;
   pointer-events: none;
-  transition: transform 760ms cubic-bezier(0.2, 0.82, 0.18, 1), opacity 760ms ease;
+  transition: transform 560ms cubic-bezier(0.2, 0.82, 0.18, 1), opacity 560ms ease;
   will-change: transform, opacity;
 }
 .fly-plate img { width: 100%; height: 100%; object-fit: contain; }
@@ -628,13 +638,17 @@ svg { width: 22px; height: 22px; fill: currentColor; }
   .top-actions { gap: 8px; }
   .chip-link { padding: 12px 16px; }
   .icon-btn, .footer-icon, .round-muted, .heart-btn, .modal-close { width: 48px; height: 48px; }
-  .plate-section { min-height: 392px; }
+  .plate-section { min-height: 404px; }
   .plate-stage { width: 100%; }
-  .plate-layer { width: min(74vw, 292px); top: 58px; }
-  .plate-shadow { width: min(60vw, 220px); bottom: 68px; }
-  .orbit-top { font-size: 9.2px; }
-  .orbit-right, .orbit-left { font-size: 4.8px; }
-  .orbit-bottom { font-size: 7px; }
+  .plate-layer { width: min(74vw, 292px); top: 56px; }
+  .plate-shadow { width: min(58vw, 212px); bottom: 72px; }
+  .orbit-top { font-size: 8px; }
+  .orbit-right, .orbit-left { font-size: 4.2px; }
+  .orbit-bottom { font-size: 5.8px; }
+  .plate-stage[data-shape="rect"] .orbit-top { font-size: 6.1px; }
+  .plate-stage[data-shape="rect"] .orbit-right,
+  .plate-stage[data-shape="rect"] .orbit-left { font-size: 3.7px; }
+  .plate-stage[data-shape="rect"] .orbit-bottom { font-size: 4.9px; }
   .plate-helper { right: 12px; top: 12px; font-size: 0.62rem; max-width: 118px; text-align: right; }
   .menu-shell { border-radius: 30px; padding: 14px 0; }
   .menu-track { grid-auto-columns: calc((100% - 4 * 10px) / 4.55); gap: 10px; padding: 0 12px; }
@@ -658,8 +672,8 @@ svg { width: 22px; height: 22px; fill: currentColor; }
 }
 @media (max-width: 420px) {
   .brand { font-size: 0.98rem; }
-  .plate-section { min-height: 372px; }
-  .plate-layer { width: min(72vw, 278px); top: 62px; }
+  .plate-section { min-height: 386px; }
+  .plate-layer { width: min(72vw, 278px); top: 58px; }
   .meta-row { gap: 10px; }
   .meta-pill { min-height: 46px; padding: 10px 14px; }
   .details-card h2 { font-size: 1.62rem; }
