@@ -14,7 +14,7 @@
       <header class="topbar page-width">
         <a class="brand" href="./">KESTFORD</a>
         <nav class="top-actions" aria-label="Main navigation">
-          <a class="chip-link" href="about/">About</a>
+          <a class="chip-link" href="about/">About us</a>
           <button class="icon-btn" type="button" id="search-btn" aria-label="Search dishes">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 0 4.026 11.602l4.436 4.436 1.414-1.414-4.436-4.436A6.5 6.5 0 0 0 10.5 4Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"/></svg>
           </button>
@@ -31,21 +31,11 @@
       <main class="page-width main-stack">
         <section class="plate-section" aria-label="Featured dish area">
           <div class="plate-stage" id="plate-stage">
-            <div class="plate-shadow"></div>
-            <div class="plate-orbit-info" aria-hidden="true">
-              <svg class="plate-orbit-svg" id="plate-orbit-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <defs>
-                  <path id="orbit-top-path"></path>
-                  <path id="orbit-right-path"></path>
-                  <path id="orbit-bottom-path"></path>
-                  <path id="orbit-left-path"></path>
-                </defs>
-                <text class="orbit-text orbit-top"><textPath id="orbit-top-text" href="#orbit-top-path" startOffset="50%" text-anchor="middle"></textPath></text>
-                <text class="orbit-text orbit-right"><textPath id="orbit-right-text" href="#orbit-right-path" startOffset="50%" text-anchor="middle"></textPath></text>
-                <text class="orbit-text orbit-bottom"><textPath id="orbit-bottom-text" href="#orbit-bottom-path" startOffset="50%" text-anchor="middle"></textPath></text>
-                <text class="orbit-text orbit-left"><textPath id="orbit-left-text" href="#orbit-left-path" startOffset="50%" text-anchor="middle"></textPath></text>
-              </svg>
+            <div class="plate-name-backdrop" aria-hidden="true">
+              <div class="plate-name-line line-top" id="plate-name-top"></div>
+              <div class="plate-name-line line-bottom" id="plate-name-bottom"></div>
             </div>
+            <div class="plate-shadow"></div>
             <div class="plate-layer current" id="plate-current"></div>
             <div class="plate-layer incoming" id="plate-incoming" aria-hidden="true"></div>
           </div>
@@ -77,7 +67,7 @@
             <div class="cta-row">
               <a class="primary-btn compact-btn" href="about/">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                About
+                About us
               </a>
               <button class="middle-btn compact-btn" id="add-btn" type="button">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4H4v2h2l2.4 5.2-1.05 1.88A1 1 0 0 0 8.22 15h9.56v-2H9.92l.55-.98h6.2a2 2 0 0 0 1.79-1.11L21.1 6.4A1 1 0 0 0 20.2 5H8.53l-.6-1H7Zm2 12.5A1.75 1.75 0 1 0 10.75 18 1.75 1.75 0 0 0 9 16.5Zm8 0A1.75 1.75 0 1 0 18.75 18 1.75 1.75 0 0 0 17 16.5Z"/></svg>
@@ -170,7 +160,7 @@
               <span>Quantity</span>
               <div class="qty-control">
                 <button id="qty-minus" type="button" aria-label="Decrease quantity">-</button>
-                <input id="order-qty" type="number" min="1" value="1" />
+                <input id="order-qty" type="number" min="1" value="1" readonly />
                 <button id="qty-plus" type="button" aria-label="Increase quantity">+</button>
               </div>
             </label>
@@ -190,7 +180,7 @@
 
           <div class="order-summary">
             <div>
-              <span>Cart total</span>
+              <span>Unit price</span>
               <strong id="summary-unit">AED 49</strong>
             </div>
             <div>

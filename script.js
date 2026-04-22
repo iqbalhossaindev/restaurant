@@ -1,12 +1,12 @@
 const dishes = [
-  { id: 'royal-chicken-biryani', titleTop: 'ROYAL CHICKEN', titleBottom: 'BIRYANI', name: 'Royal Chicken Biryani', image: 'assets/dishes/royal-chicken-biryani.png', imageWebp: 'assets/dishes/royal-chicken-biryani.webp', price: 49, rating: 4.9, cuisine: 'Middle Eastern', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Fragrant rice, tender chicken, and warm spice notes presented in a rich premium bowl.', tags: ['Chef favourite', 'Premium spice', 'Dubai classic', 'AED ready'], origin: 'Traditional Emirati spice bowl', calories: 640, protein: 32 },
-  { id: 'sesame-beef-bowl', titleTop: 'SESAME BEEF', titleBottom: 'BOWL', name: 'Sesame Beef Bowl', image: 'assets/dishes/sesame-beef-bowl.png', imageWebp: 'assets/dishes/sesame-beef-bowl.webp', price: 46, rating: 4.9, cuisine: 'Asian Grill', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Tender beef, sesame, and rich savoury depth in a warm modern bowl.', tags: ['Bold flavour', 'Chef grill', 'Rice bowl', 'AED ready'], origin: 'Fire wok sesame glaze', calories: 610, protein: 34 },
-  { id: 'mushroom-garden-plate', titleTop: 'MUSHROOM GARDEN', titleBottom: 'PLATE', name: 'Mushroom Garden Plate', image: 'assets/dishes/mushroom-garden-plate.png', imageWebp: 'assets/dishes/mushroom-garden-plate.webp', price: 34, rating: 4.8, cuisine: 'Contemporary', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.', tags: ['Fresh garden', 'Soft texture', 'Light finish', 'AED ready'], origin: 'Fresh market garden plate', calories: 420, protein: 18 },
-  { id: 'chicken-pasta-bowl', titleTop: 'CHICKEN PASTA', titleBottom: 'BOWL', name: 'Chicken Pasta Bowl', image: 'assets/dishes/chicken-pasta-bowl.png', imageWebp: 'assets/dishes/chicken-pasta-bowl.webp', price: 38, rating: 4.7, cuisine: 'Italian Comfort', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Creamy pasta, tender chicken, and a soft cheesy finish served in a bright hearty bowl.', tags: ['Creamy pasta', 'Family pick', 'Comfort dish', 'AED ready'], origin: 'Traditional Italian fusion', calories: 580, protein: 32 },
-  { id: 'shrimp-noodle-bowl', titleTop: 'SHRIMP NOODLE', titleBottom: 'BOWL', name: 'Shrimp Noodle Bowl', image: 'assets/dishes/shrimp-noodle-bowl.png', imageWebp: 'assets/dishes/shrimp-noodle-bowl.webp', price: 42, rating: 4.8, cuisine: 'Wok Style', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Springy noodles, shrimp, and wok tossed vegetables finished with a glossy savoury sauce.', tags: ['Wok toss', 'Seafood', 'Popular pick', 'AED ready'], origin: 'Seafood wok signature', calories: 560, protein: 29 },
-  { id: 'low-carb-tofu-box', titleTop: 'LOW CARB', titleBottom: 'TOFU BOX', name: 'Low Carb Tofu Box', image: 'assets/dishes/low-carb-tofu-box.png', imageWebp: 'assets/dishes/low-carb-tofu-box.webp', price: 36, rating: 4.6, cuisine: 'Healthy Box', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Grilled tofu, noodles, and greens in a light balanced box with clean presentation.', tags: ['Healthy pick', 'Protein rich', 'Light box', 'AED ready'], origin: 'Balanced green kitchen box', calories: 390, protein: 24 },
-  { id: 'sweet-potato-spirals', titleTop: 'SWEET POTATO', titleBottom: 'SPIRALS', name: 'Sweet Potato Spirals', image: 'assets/dishes/sweet-potato-spirals.png', imageWebp: 'assets/dishes/sweet-potato-spirals.webp', price: 24, rating: 4.5, cuisine: 'Fresh Prep', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Fresh cut sweet potato spirals with bright colour and a clean ready to cook presentation.', tags: ['Fresh prep', 'Bright colour', 'Vegetable side', 'AED ready'], origin: 'Fresh harvest produce', calories: 240, protein: 6 },
-  { id: 'classic-noodle-plate', titleTop: 'CLASSIC NOODLE', titleBottom: 'PLATE', name: 'Classic Noodle Plate', image: 'assets/dishes/classic-noodle-plate.png', imageWebp: 'assets/dishes/classic-noodle-plate.webp', price: 28, rating: 4.4, cuisine: 'Simple Plate', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'A light noodle plate with crisp greens and a clean minimal finish.', tags: ['Simple plate', 'Light meal', 'Fresh greens', 'AED ready'], origin: 'Simple comfort noodle plate', calories: 330, protein: 12 }
+  { id: 'royal-chicken-biryani', titleTop: 'ROYAL CHICKEN', titleBottom: 'BIRYANI', name: 'Royal Chicken Biryani', image: 'assets/dishes/royal-chicken-biryani.png', imageWebp: 'assets/dishes/royal-chicken-biryani.webp', price: 49, rating: 4.9, cuisine: 'Middle Eastern', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Fragrant rice, tender chicken, and warm spice notes presented in a rich premium bowl.', tags: ['Chef favourite', 'Premium spice', 'Dubai classic'], calories: 640, protein: 32 },
+  { id: 'sesame-beef-bowl', titleTop: 'SESAME BEEF', titleBottom: 'BOWL', name: 'Sesame Beef Bowl', image: 'assets/dishes/sesame-beef-bowl.png', imageWebp: 'assets/dishes/sesame-beef-bowl.webp', price: 46, rating: 4.9, cuisine: 'Asian Grill', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Tender beef, sesame, and rich savoury depth in a warm modern bowl.', tags: ['Bold flavour', 'Chef grill', 'Rice bowl'], calories: 610, protein: 34 },
+  { id: 'mushroom-garden-plate', titleTop: 'MUSHROOM GARDEN', titleBottom: 'PLATE', name: 'Mushroom Garden Plate', image: 'assets/dishes/mushroom-garden-plate.png', imageWebp: 'assets/dishes/mushroom-garden-plate.webp', price: 34, rating: 4.8, cuisine: 'Contemporary', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Savory mushrooms, soft bites, and fresh green garnish with a calm plated finish.', tags: ['Fresh garden', 'Soft texture', 'Light finish'], calories: 420, protein: 18 },
+  { id: 'chicken-pasta-bowl', titleTop: 'CHICKEN PASTA', titleBottom: 'BOWL', name: 'Chicken Pasta Bowl', image: 'assets/dishes/chicken-pasta-bowl.png', imageWebp: 'assets/dishes/chicken-pasta-bowl.webp', price: 38, rating: 4.7, cuisine: 'Italian Comfort', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Creamy pasta, tender chicken, and a soft cheesy finish served in a bright hearty bowl.', tags: ['Creamy pasta', 'Family pick', 'Comfort dish'], calories: 580, protein: 32 },
+  { id: 'shrimp-noodle-bowl', titleTop: 'SHRIMP NOODLE', titleBottom: 'BOWL', name: 'Shrimp Noodle Bowl', image: 'assets/dishes/shrimp-noodle-bowl.png', imageWebp: 'assets/dishes/shrimp-noodle-bowl.webp', price: 42, rating: 4.8, cuisine: 'Wok Style', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'Springy noodles, shrimp, and wok tossed vegetables finished with a glossy savoury sauce.', tags: ['Wok toss', 'Seafood', 'Popular pick'], calories: 560, protein: 29 },
+  { id: 'low-carb-tofu-box', titleTop: 'LOW CARB', titleBottom: 'TOFU BOX', name: 'Low Carb Tofu Box', image: 'assets/dishes/low-carb-tofu-box.png', imageWebp: 'assets/dishes/low-carb-tofu-box.webp', price: 36, rating: 4.6, cuisine: 'Healthy Box', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Grilled tofu, noodles, and greens in a light balanced box with clean presentation.', tags: ['Healthy pick', 'Protein rich', 'Light box'], calories: 390, protein: 24 },
+  { id: 'sweet-potato-spirals', titleTop: 'SWEET POTATO', titleBottom: 'SPIRALS', name: 'Sweet Potato Spirals', image: 'assets/dishes/sweet-potato-spirals.png', imageWebp: 'assets/dishes/sweet-potato-spirals.webp', price: 24, rating: 4.5, cuisine: 'Fresh Prep', service: 'Takeaway', location: 'Dubai Marina, Dubai', description: 'Fresh cut sweet potato spirals with bright colour and a clean ready to cook presentation.', tags: ['Fresh prep', 'Bright colour', 'Vegetable side'], calories: 240, protein: 6 },
+  { id: 'classic-noodle-plate', titleTop: 'CLASSIC NOODLE', titleBottom: 'PLATE', name: 'Classic Noodle Plate', image: 'assets/dishes/classic-noodle-plate.png', imageWebp: 'assets/dishes/classic-noodle-plate.webp', price: 28, rating: 4.4, cuisine: 'Simple Plate', service: 'Dine In', location: 'Dubai Marina, Dubai', description: 'A light noodle plate with crisp greens and a clean minimal finish.', tags: ['Simple plate', 'Light meal', 'Fresh greens'], calories: 330, protein: 12 }
 ];
 
 let activeIndex = 0;
@@ -16,19 +16,15 @@ let plateStartX = 0;
 let plateStartY = 0;
 let plateSwiping = false;
 let lastPlateTap = 0;
+let standaloneQuantity = 1;
+let selectedCartId = null;
 const cart = new Map();
 
 const plateStage = document.getElementById('plate-stage');
 const currentPlate = document.getElementById('plate-current');
 const incomingPlate = document.getElementById('plate-incoming');
-const orbitTopPath = document.getElementById('orbit-top-path');
-const orbitRightPath = document.getElementById('orbit-right-path');
-const orbitBottomPath = document.getElementById('orbit-bottom-path');
-const orbitLeftPath = document.getElementById('orbit-left-path');
-const orbitTopText = document.getElementById('orbit-top-text');
-const orbitRightText = document.getElementById('orbit-right-text');
-const orbitBottomText = document.getElementById('orbit-bottom-text');
-const orbitLeftText = document.getElementById('orbit-left-text');
+const plateNameTop = document.getElementById('plate-name-top');
+const plateNameBottom = document.getElementById('plate-name-bottom');
 const menuTrack = document.getElementById('menu-track');
 const rankNumber = document.getElementById('rank-number');
 const titleTop = document.getElementById('title-top');
@@ -66,6 +62,7 @@ const orderPhone = document.getElementById('order-phone');
 const orderBuilding = document.getElementById('order-building');
 const summaryUnit = document.getElementById('summary-unit');
 const summaryTotal = document.getElementById('summary-total');
+const cardTitle = document.getElementById('card-title');
 
 function imageFallbackMarkup(dish) {
   return `src="${dish.image}" data-fallback="${dish.imageWebp || dish.image.replace('.png', '.webp')}" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.opacity='0';}"`;
@@ -85,94 +82,7 @@ function setDishImage(img, dish) {
   };
 }
 
-function polarToCartesian(cx, cy, rx, ry, angle) {
-  const radians = (angle - 90) * Math.PI / 180;
-  return { x: cx + rx * Math.cos(radians), y: cy + ry * Math.sin(radians) };
-}
-
-function describeArc(cx, cy, rx, ry, startAngle, endAngle, sweepFlag = 1) {
-  const start = polarToCartesian(cx, cy, rx, ry, startAngle);
-  const end = polarToCartesian(cx, cy, rx, ry, endAngle);
-  let diff = endAngle - startAngle;
-  diff = ((diff % 360) + 360) % 360;
-  const largeArcFlag = diff > 180 ? '1' : '0';
-  return `M ${start.x.toFixed(2)} ${start.y.toFixed(2)} A ${rx.toFixed(2)} ${ry.toFixed(2)} 0 ${largeArcFlag} ${sweepFlag} ${end.x.toFixed(2)} ${end.y.toFixed(2)}`;
-}
-
-function describeRectSegment(x, y, w, h, r, side) {
-  const left = x;
-  const right = x + w;
-  const top = y;
-  const bottom = y + h;
-  if (side === 'top') return `M ${(left + r).toFixed(2)} ${top.toFixed(2)} H ${(right - r).toFixed(2)}`;
-  if (side === 'right') return `M ${right.toFixed(2)} ${(top + r).toFixed(2)} V ${(bottom - r).toFixed(2)}`;
-  if (side === 'bottom') return `M ${(right - r).toFixed(2)} ${bottom.toFixed(2)} H ${(left + r).toFixed(2)}`;
-  return `M ${left.toFixed(2)} ${(bottom - r).toFixed(2)} V ${(top + r).toFixed(2)}`;
-}
-
-function getOrbitShape(dish) {
-  if (dish.id === 'low-carb-tofu-box' || dish.id === 'sweet-potato-spirals') return 'rect';
-  return 'round';
-}
-
-function updatePlateOrbit() {
-  const dish = getActiveDish();
-  const stageRect = plateStage.getBoundingClientRect();
-  const img = currentPlate.querySelector('img');
-  if (!img || !stageRect.width || !stageRect.height) return;
-
-  const naturalWidth = img.naturalWidth || 1;
-  const naturalHeight = img.naturalHeight || 1;
-  const frameSize = currentPlate.getBoundingClientRect().width || currentPlate.offsetWidth || 320;
-  const scale = Math.min(frameSize / naturalWidth, frameSize / naturalHeight);
-  const visibleWidth = naturalWidth * scale;
-  const visibleHeight = naturalHeight * scale;
-  const centerY = (currentPlate.offsetTop + frameSize / 2) / stageRect.height * 100;
-  const visibleWidthPct = visibleWidth / stageRect.width * 100;
-  const visibleHeightPct = visibleHeight / stageRect.height * 100;
-  const shape = getOrbitShape(dish);
-  plateStage.dataset.shape = shape;
-
-  if (shape === 'rect') {
-    const padX = 1.6;
-    const padY = 1.8;
-    const x = 50 - visibleWidthPct / 2 - padX;
-    const y = centerY - visibleHeightPct / 2 - padY;
-    const w = visibleWidthPct + padX * 2;
-    const h = visibleHeightPct + padY * 2;
-    const radius = Math.min(4.8, w * 0.08, h * 0.08);
-    orbitTopPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'top'));
-    orbitRightPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'right'));
-    orbitBottomPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'bottom'));
-    orbitLeftPath.setAttribute('d', describeRectSegment(x, y, w, h, radius, 'left'));
-  } else {
-    const rx = visibleWidthPct / 2 + 1.9;
-    const ry = visibleHeightPct / 2 + 2.0;
-    const cx = 50;
-    const cy = centerY;
-    orbitTopPath.setAttribute('d', describeArc(cx, cy, rx, ry, -60, 60, 1));
-    orbitRightPath.setAttribute('d', describeArc(cx, cy, rx + 0.45, ry + 0.4, 28, 152, 1));
-    orbitBottomPath.setAttribute('d', describeArc(cx, cy, rx + 0.2, ry + 0.2, 242, 118, 0));
-    orbitLeftPath.setAttribute('d', describeArc(cx, cy, rx + 0.45, ry + 0.4, 332, 208, 0));
-  }
-
-  orbitTopText.textContent = dish.name.toUpperCase();
-  orbitRightText.textContent = `CALORIES: ${dish.calories} / PROTEIN: ${dish.protein}G`;
-  orbitBottomText.textContent = `PRICE: AED ${dish.price}`;
-  orbitLeftText.textContent = `ORIGIN: ${dish.origin.toUpperCase()}`;
-}
-
-let orbitFrame = null;
-function refreshPlateOrbit() {
-  if (orbitFrame) cancelAnimationFrame(orbitFrame);
-  orbitFrame = requestAnimationFrame(() => {
-    orbitFrame = null;
-    updatePlateOrbit();
-  });
-}
-
 function getDish(index) {
-
   const size = dishes.length;
   return dishes[(index + size) % size];
 }
@@ -182,7 +92,9 @@ function getActiveDish() {
 }
 
 function getCartItems() {
-  return [...cart.entries()].map(([id, quantity]) => ({ dish: dishes.find((item) => item.id === id), quantity }));
+  return [...cart.entries()]
+    .map(([id, quantity]) => ({ dish: dishes.find((item) => item.id === id), quantity }))
+    .filter((item) => item.dish && item.quantity > 0);
 }
 
 function getCartCount() {
@@ -193,6 +105,15 @@ function getCartTotal() {
   return getCartItems().reduce((sum, item) => sum + item.quantity * item.dish.price, 0);
 }
 
+function getSelectedCartItem() {
+  const items = getCartItems();
+  if (!items.length) return null;
+  if (!selectedCartId || !cart.has(selectedCartId)) {
+    selectedCartId = items[0].dish.id;
+  }
+  return items.find((item) => item.dish.id === selectedCartId) || items[0];
+}
+
 function mountPlate(target, dish) {
   target.innerHTML = '';
   const img = document.createElement('img');
@@ -201,9 +122,27 @@ function mountPlate(target, dish) {
   target.appendChild(img);
 }
 
+function buildFlipLine(element, text) {
+  element.innerHTML = '';
+  text.split(' ').forEach((word, index) => {
+    const outer = document.createElement('span');
+    outer.className = 'word-flip';
+    outer.style.setProperty('--delay', `${index * 70}ms`);
+    const inner = document.createElement('span');
+    inner.textContent = word;
+    outer.appendChild(inner);
+    element.appendChild(outer);
+  });
+}
+
+function updatePlateBackdropText(dish) {
+  buildFlipLine(plateNameTop, dish.titleTop);
+  buildFlipLine(plateNameBottom, dish.titleBottom);
+}
+
 function cardAlpha(distance, isActive) {
-  if (isActive) return 0.78;
-  return Math.max(0.18, 0.5 - distance * 0.05);
+  if (isActive) return 0.92;
+  return Math.max(0.20, 0.54 - distance * 0.05);
 }
 
 function menuCardTemplate(dish, index) {
@@ -252,13 +191,20 @@ function getDetailsText(dish) {
   return dish.description;
 }
 
+function updateGlowTitleText(node, text) {
+  node.textContent = text;
+  node.dataset.text = text;
+  node.classList.remove('fade-swap');
+  void node.offsetWidth;
+  node.classList.add('fade-swap');
+}
+
 function renderDish() {
   const dish = getActiveDish();
   rankNumber.textContent = `#${activeIndex + 1}`;
-  titleTop.textContent = dish.titleTop;
-  titleTop.dataset.text = dish.titleTop;
-  titleBottom.textContent = dish.titleBottom;
-  titleBottom.dataset.text = dish.titleBottom;
+  updateGlowTitleText(titleTop, dish.titleTop);
+  updateGlowTitleText(titleBottom, dish.titleBottom);
+  updatePlateBackdropText(dish);
   dishDescription.textContent = dish.description;
   pricePill.textContent = `AED ${dish.price}`;
   locationPill.textContent = dish.location;
@@ -268,17 +214,17 @@ function renderDish() {
   detailCuisine.textContent = dish.cuisine;
   detailLocation.textContent = 'Dubai Marina';
   detailService.textContent = dish.service;
-  document.getElementById('card-title').textContent = 'Kestford Signature';
+  cardTitle.textContent = 'Kestford Signature';
 
   tagRow.innerHTML = '';
-  dish.tags.slice(0, 4).forEach((tag) => {
+  [...dish.tags, `${dish.calories} Cal`].forEach((tag) => {
     const pill = document.createElement('span');
     pill.className = 'tag-pill';
     pill.textContent = tag;
     tagRow.appendChild(pill);
   });
 
-  [titleTop, titleBottom, dishDescription, detailsCopy, dishRating].forEach((node) => {
+  [dishDescription, detailsCopy, dishRating].forEach((node) => {
     node.classList.remove('fade-swap');
     void node.offsetWidth;
     node.classList.add('fade-swap');
@@ -287,21 +233,19 @@ function renderDish() {
   refreshMenuStyles();
   centerActiveMenuCard();
   syncOrderSummary();
-  refreshPlateOrbit();
 }
-
 
 function switchDish(nextIndex) {
   const normalized = (nextIndex + dishes.length) % dishes.length;
   if (isAnimating || normalized === activeIndex) return;
+  const direction = normalized > activeIndex || (activeIndex === dishes.length - 1 && normalized === 0) ? 'left' : 'right';
   const nextDish = getDish(normalized);
   isAnimating = true;
   mountPlate(incomingPlate, nextDish);
   incomingPlate.className = 'plate-layer incoming';
-  currentPlate.classList.remove('animate-out');
-  incomingPlate.classList.remove('animate-in');
+  currentPlate.className = 'plate-layer current';
   void incomingPlate.offsetWidth;
-  currentPlate.classList.add('animate-out');
+  currentPlate.classList.add('animate-out', direction);
   incomingPlate.classList.add('animate-in');
   activeIndex = normalized;
   renderDish();
@@ -311,8 +255,7 @@ function switchDish(nextIndex) {
     incomingPlate.className = 'plate-layer incoming';
     incomingPlate.innerHTML = '';
     isAnimating = false;
-    refreshPlateOrbit();
-  }, 620);
+  }, 560);
 }
 
 function nextDish() { switchDish(activeIndex + 1); }
@@ -325,7 +268,7 @@ function plateSwipeStart(x, y) {
 }
 
 function plateSwipeEnd(x, y) {
-  if (!plateSwiping) return;
+  if (!plateSwiping) return false;
   plateSwiping = false;
   const dx = x - plateStartX;
   const dy = y - plateStartY;
@@ -341,6 +284,7 @@ function updateCartVisuals() {
   const items = getCartItems();
   const count = getCartCount();
   cartBadge.textContent = String(count);
+  cartBadge.classList.toggle('is-empty', count === 0);
   cartBtn.classList.toggle('has-items', count > 0);
   if (items.length) {
     cartPeek.style.backgroundImage = `url('${items[items.length - 1].dish.image}')`;
@@ -362,62 +306,83 @@ function animateImageToTarget(imageSrc, sourceRect, targetRect, extraClass = '')
     const dx = targetRect.left + targetRect.width / 2 - (sourceRect.left + sourceRect.width / 2);
     const dy = targetRect.top + targetRect.height / 2 - (sourceRect.top + sourceRect.height / 2);
     const scale = Math.max(0.18, Math.min(targetRect.width / sourceRect.width, targetRect.height / sourceRect.height) * 0.72);
-    clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale}) rotate(-14deg)`;
+    clone.style.transform = `translate(${dx}px, ${dy}px) scale(${scale}) rotate(-10deg)`;
     clone.style.opacity = '0.14';
   });
-  window.setTimeout(() => clone.remove(), 560);
+  window.setTimeout(() => clone.remove(), 440);
 }
 
 function addDishToCart(dish = getActiveDish(), sourceRect = null) {
   cart.set(dish.id, (cart.get(dish.id) || 0) + 1);
+  selectedCartId = dish.id;
   updateCartVisuals();
+  renderOrderCartList();
   syncOrderSummary();
   addBtn.classList.add('success-flash');
-  window.setTimeout(() => addBtn.classList.remove('success-flash'), 420);
-  if (sourceRect) {
-    animateImageToTarget(dish.image, sourceRect, cartBtn.getBoundingClientRect());
-  }
-}
-
-function handlePlateDoubleTap() {
-  plateStage.classList.add('show-add-hint');
-  window.setTimeout(() => plateStage.classList.remove('show-add-hint'), 1400);
+  window.setTimeout(() => addBtn.classList.remove('success-flash'), 300);
+  if (sourceRect) animateImageToTarget(dish.image, sourceRect, cartBtn.getBoundingClientRect());
 }
 
 function cartSummaryText() {
   const items = getCartItems();
-  if (!items.length) {
-    return getActiveDish().name;
-  }
+  if (!items.length) return getActiveDish().name;
   return items.map(({ dish, quantity }) => `${dish.name} x${quantity}`).join(', ');
 }
 
 function renderOrderCartList(animated = false) {
   const items = getCartItems();
   orderCartList.innerHTML = '';
-  if (!items.length) {
-    const item = document.createElement('div');
-    item.className = 'order-cart-chip single';
-    item.innerHTML = `<img src="${getActiveDish().image}" alt="${getActiveDish().name}" /><span>${getActiveDish().name}</span>`;
-    orderCartList.appendChild(item);
-    return;
-  }
+
+  if (!items.length) return;
+  if (!selectedCartId || !cart.has(selectedCartId)) selectedCartId = items[0].dish.id;
+
   items.forEach(({ dish, quantity }, index) => {
-    const item = document.createElement('div');
-    item.className = `order-cart-chip ${animated ? 'drop-in' : ''}`;
-    item.style.animationDelay = `${index * 90}ms`;
-    item.innerHTML = `<img ${imageFallbackMarkup(dish)} alt="${dish.name}" /><span>${dish.name} x${quantity}</span>`;
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = `order-cart-chip ${selectedCartId === dish.id ? 'active' : ''} ${animated ? 'drop-in' : ''}`.trim();
+    item.style.animationDelay = `${index * 80}ms`;
+    item.innerHTML = `
+      <img ${imageFallbackMarkup(dish)} alt="${dish.name}" />
+      <span class="chip-label">${dish.name} x${quantity}</span>
+      <span class="chip-remove" role="button" aria-label="Remove ${dish.name}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.41L10.59 13.4 4.29 19.7 2.88 18.29 9.17 12 2.88 5.71 4.29 4.3l6.3 6.29 6.29-6.3z"/></svg>
+      </span>
+    `;
+    item.addEventListener('click', (event) => {
+      const removeBtn = event.target.closest('.chip-remove');
+      if (removeBtn) {
+        cart.delete(dish.id);
+        const remaining = getCartItems();
+        selectedCartId = remaining[0]?.dish.id || null;
+        updateCartVisuals();
+        renderOrderCartList();
+        syncOrderSummary();
+        return;
+      }
+      selectedCartId = dish.id;
+      renderOrderCartList();
+      syncOrderSummary();
+    });
     orderCartList.appendChild(item);
   });
 }
 
 function syncOrderSummary() {
-  const totalItems = getCartCount() || Math.max(1, Number(orderQty.value) || 1);
-  const total = getCartItems().length ? getCartTotal() : getActiveDish().price * totalItems;
-  orderDish.value = cartSummaryText();
-  orderQty.value = String(totalItems);
-  summaryUnit.textContent = `AED ${total}`;
-  summaryTotal.textContent = `AED ${total}`;
+  const cartItems = getCartItems();
+  if (cartItems.length) {
+    const selected = getSelectedCartItem();
+    orderDish.value = cartSummaryText();
+    orderQty.value = String(selected.quantity);
+    summaryUnit.textContent = `AED ${selected.dish.price}`;
+    summaryTotal.textContent = `AED ${getCartTotal()}`;
+    return;
+  }
+
+  const dish = getActiveDish();
+  orderDish.value = dish.name;
+  orderQty.value = String(standaloneQuantity);
+  summaryUnit.textContent = `AED ${dish.price}`;
+  summaryTotal.textContent = `AED ${dish.price * standaloneQuantity}`;
 }
 
 function openModal(animated = true) {
@@ -437,35 +402,20 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-function animateCartIntoModal() {
-  const items = getCartItems();
-  if (!items.length) {
-    openModal(true);
-    return;
-  }
-  const targetRect = modalPanel.getBoundingClientRect();
-  items.forEach(({ dish }, index) => {
-    window.setTimeout(() => {
-      const rect = cartBtn.getBoundingClientRect();
-      animateImageToTarget(dish.image, rect, { left: targetRect.left + 120 + index * 18, top: targetRect.top + 92, width: 44, height: 44 }, 'mini');
-    }, index * 90);
-  });
-  window.setTimeout(() => openModal(true), items.length * 90 + 120);
-}
-
-function handleOrderClick() {
-  if (!getCartCount()) {
-    const img = currentPlate.querySelector('img');
-    if (img) addDishToCart(getActiveDish(), img.getBoundingClientRect());
-  }
-  animateCartIntoModal();
+function openCartModal() {
+  openModal(true);
 }
 
 function buildWhatsAppMessage(phone, location, building) {
   const items = getCartItems();
-  const lines = items.length ? items.map(({ dish, quantity }) => `*${dish.name}* x${quantity}`).join('\n') : `*${getActiveDish().name}* x${orderQty.value}`;
-  const total = items.length ? getCartTotal() : getActiveDish().price * (Number(orderQty.value) || 1);
-  return `Hello Kestford Restaurant, I want to order ${items.length ? 'these items' : '*'+getActiveDish().name+'*'}.\n\n${items.length ? lines + '\n\n' : ''}*Quantity:* ${items.length ? getCartCount() : orderQty.value}\n*Total:* AED ${total}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
+  if (items.length) {
+    const lines = items.map(({ dish, quantity }) => `*${dish.name}* x${quantity}`).join('\n');
+    return `Hello Kestford Restaurant, I want to order these items.\n\n${lines}\n\n*Quantity:* ${getCartCount()}\n*Total:* AED ${getCartTotal()}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
+  }
+
+  const dish = getActiveDish();
+  const total = dish.price * standaloneQuantity;
+  return `Hello Kestford Restaurant, I want to order *${dish.name}*.\n\n*Quantity:* ${standaloneQuantity}\n*Total:* AED ${total}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
 }
 
 plateStage.addEventListener('pointerdown', (event) => {
@@ -475,7 +425,10 @@ plateStage.addEventListener('pointerdown', (event) => {
 plateStage.addEventListener('pointerup', (event) => {
   const swiped = plateSwipeEnd(event.clientX, event.clientY);
   const now = Date.now();
-  if (!swiped && now - lastPlateTap < 300) handlePlateDoubleTap();
+  if (!swiped && now - lastPlateTap < 300) {
+    const img = currentPlate.querySelector('img');
+    if (img) addDishToCart(getActiveDish(), img.getBoundingClientRect());
+  }
   lastPlateTap = now;
 });
 
@@ -508,19 +461,43 @@ addBtn.addEventListener('click', () => {
   const img = currentPlate.querySelector('img');
   if (img) addDishToCart(getActiveDish(), img.getBoundingClientRect());
 });
-orderBtn.addEventListener('click', handleOrderClick);
-cartBtn.addEventListener('click', handleOrderClick);
+orderBtn.addEventListener('click', openCartModal);
+cartBtn.addEventListener('click', openCartModal);
 modalBackdrop.addEventListener('click', closeModal);
 modalClose.addEventListener('click', closeModal);
 qtyMinus.addEventListener('click', () => {
-  const next = Math.max(1, Number(orderQty.value || 1) - 1);
-  orderQty.value = String(next);
-  if (!getCartCount()) summaryTotal.textContent = `AED ${getActiveDish().price * next}`;
+  const items = getCartItems();
+  if (items.length) {
+    const selected = getSelectedCartItem();
+    if (!selected) return;
+    const nextQty = selected.quantity - 1;
+    if (nextQty <= 0) {
+      cart.delete(selected.dish.id);
+      selectedCartId = getCartItems()[0]?.dish.id || null;
+    } else {
+      cart.set(selected.dish.id, nextQty);
+    }
+    updateCartVisuals();
+    renderOrderCartList();
+    syncOrderSummary();
+    return;
+  }
+  standaloneQuantity = Math.max(1, standaloneQuantity - 1);
+  syncOrderSummary();
 });
 qtyPlus.addEventListener('click', () => {
-  const next = Math.max(1, Number(orderQty.value || 1) + 1);
-  orderQty.value = String(next);
-  if (!getCartCount()) summaryTotal.textContent = `AED ${getActiveDish().price * next}`;
+  const items = getCartItems();
+  if (items.length) {
+    const selected = getSelectedCartItem();
+    if (!selected) return;
+    cart.set(selected.dish.id, selected.quantity + 1);
+    updateCartVisuals();
+    renderOrderCartList();
+    syncOrderSummary();
+    return;
+  }
+  standaloneQuantity += 1;
+  syncOrderSummary();
 });
 orderForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -542,5 +519,3 @@ buildMenu();
 renderDish();
 updateCartVisuals();
 orderLocation.value = 'Dubai Marina, Dubai';
-window.addEventListener('resize', refreshPlateOrbit);
-window.addEventListener('load', refreshPlateOrbit);
