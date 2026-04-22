@@ -136,10 +136,30 @@ function buildFlipLine(element, text) {
 }
 
 function fitBackdropLine(element) {
-  const available = Math.max(120, plateStage.clientWidth - 20);
-  const natural = element.scrollWidth || 1;
-  const scale = available / natural;
-  element.style.setProperty('--line-scale', String(scale));
+  const available = Math.max(180, plateStage.clientWidth - 40);
+  const maxPx = Math.min(plateStage.clientWidth * 0.16, 124);
+  const minPx = Math.max(36, plateStage.clientWidth * 0.075);
+
+  element.style.setProperty('--fit-size', `${maxPx}px`);
+  let natural = element.scrollWidth || 1;
+  let fitted = Math.max(minPx, Math.min(maxPx, maxPx * (available / natural)));
+  element.style.setProperty('--fit-size', `${fitted}px`);
+
+  for (let i = 0; i < 10 && element.scrollWidth > available; i += 1) {
+    fitted *= 0.97;
+    element.style.setProperty('--fit-size', `${fitted}px`);
+  }
+
+  for (let i = 0; i < 10 && element.scrollWidth < available * 0.955; i += 1) {
+    const next = Math.min(maxPx, fitted * 1.02);
+    if (next === fitted) break;
+    element.style.setProperty('--fit-size', `${next}px`);
+    if (element.scrollWidth > available) {
+      element.style.setProperty('--fit-size', `${fitted}px`);
+      break;
+    }
+    fitted = next;
+  }
 }
 
 function updatePlateBackdropText(dish) {
@@ -530,6 +550,23 @@ orderForm.addEventListener('submit', (event) => {
   const url = `https://wa.me/15798995633?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank', 'noopener');
 });
+
+const splashScreen = document.getElementById('splash-screen');
+
+function hideSplashScreen() {
+  if (!splashScreen || splashScreen.classList.contains('is-hidden')) return;
+  splashScreen.classList.add('is-hidden');
+  document.body.classList.remove('splash-open');
+  window.setTimeout(() => {
+    if (splashScreen) splashScreen.remove();
+  }, 460);
+}
+
+if (splashScreen) {
+  document.body.classList.add('splash-open');
+  window.setTimeout(hideSplashScreen, 1900);
+  splashScreen.addEventListener('click', hideSplashScreen, { once: true });
+}
 
 mountPlate(currentPlate, dishes[0]);
 buildMenu();
