@@ -16,7 +16,6 @@ let plateStartX = 0;
 let plateStartY = 0;
 let plateSwiping = false;
 let lastPlateTap = 0;
-let standaloneQuantity = 1;
 let selectedCartId = null;
 const cart = new Map();
 
@@ -63,6 +62,7 @@ const orderBuilding = document.getElementById('order-building');
 const summaryUnit = document.getElementById('summary-unit');
 const summaryTotal = document.getElementById('summary-total');
 const cardTitle = document.getElementById('card-title');
+const placeOrderButton = document.querySelector('.place-order-btn');
 
 function imageFallbackMarkup(dish) {
   return `src="${dish.image}" data-fallback="${dish.imageWebp || dish.image.replace('.png', '.webp')}" onerror="if(this.dataset.fallback&&this.src!==this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.opacity='0';}"`;
@@ -122,17 +122,8 @@ function mountPlate(target, dish) {
   target.appendChild(img);
 }
 
-function backdropScale(text) {
-  const len = text.replace(/\s+/g, '').length;
-  if (len >= 18) return 0.70;
-  if (len >= 15) return 0.78;
-  if (len >= 12) return 0.88;
-  return 1;
-}
-
 function buildFlipLine(element, text) {
   element.innerHTML = '';
-  element.style.setProperty('--line-scale', String(backdropScale(text)));
   text.split(' ').forEach((word, index) => {
     const outer = document.createElement('span');
     outer.className = 'word-flip';
@@ -144,9 +135,20 @@ function buildFlipLine(element, text) {
   });
 }
 
+function fitBackdropLine(element) {
+  const available = Math.max(120, plateStage.clientWidth - 20);
+  const natural = element.scrollWidth || 1;
+  const scale = available / natural;
+  element.style.setProperty('--line-scale', String(scale));
+}
+
 function updatePlateBackdropText(dish) {
   buildFlipLine(plateNameTop, dish.titleTop);
   buildFlipLine(plateNameBottom, dish.titleBottom);
+  requestAnimationFrame(() => {
+    fitBackdropLine(plateNameTop);
+    fitBackdropLine(plateNameBottom);
+  });
 }
 
 function cardAlpha(distance, isActive) {
@@ -334,8 +336,35 @@ function addDishToCart(dish = getActiveDish(), sourceRect = null) {
 
 function cartSummaryText() {
   const items = getCartItems();
-  if (!items.length) return getActiveDish().name;
+  if (!items.length) return '';
   return items.map(({ dish, quantity }) => `${dish.name} x${quantity}`).join(', ');
+}
+
+function syncOrderSummary() {
+  const cartItems = getCartItems();
+  if (cartItems.length) {
+    const selected = getSelectedCartItem();
+    orderDish.value = selected ? selected.dish.name : cartSummaryText();
+    orderDish.placeholder = '';
+    orderDish.classList.remove('is-empty');
+    orderQty.value = String(selected.quantity);
+    summaryUnit.textContent = `AED ${selected.dish.price}`;
+    summaryTotal.textContent = `AED ${getCartTotal()}`;
+    qtyMinus.disabled = false;
+    qtyPlus.disabled = false;
+    placeOrderButton.disabled = false;
+    return;
+  }
+
+  orderDish.value = '';
+  orderDish.placeholder = 'Add dishes to cart first';
+  orderDish.classList.add('is-empty');
+  orderQty.value = '0';
+  summaryUnit.textContent = 'AED 0';
+  summaryTotal.textContent = 'AED 0';
+  qtyMinus.disabled = true;
+  qtyPlus.disabled = true;
+  placeOrderButton.disabled = true;
 }
 
 function renderOrderCartList(animated = false) {
@@ -376,24 +405,6 @@ function renderOrderCartList(animated = false) {
   });
 }
 
-function syncOrderSummary() {
-  const cartItems = getCartItems();
-  if (cartItems.length) {
-    const selected = getSelectedCartItem();
-    orderDish.value = selected ? selected.dish.name : cartSummaryText();
-    orderQty.value = String(selected.quantity);
-    summaryUnit.textContent = `AED ${selected.dish.price}`;
-    summaryTotal.textContent = `AED ${getCartTotal()}`;
-    return;
-  }
-
-  const dish = getActiveDish();
-  orderDish.value = dish.name;
-  orderQty.value = String(standaloneQuantity);
-  summaryUnit.textContent = `AED ${dish.price}`;
-  summaryTotal.textContent = `AED ${dish.price * standaloneQuantity}`;
-}
-
 function openModal(animated = true) {
   renderOrderCartList(animated);
   syncOrderSummary();
@@ -417,16 +428,10 @@ function openCartModal() {
 
 function buildWhatsAppMessage(phone, location, building) {
   const items = getCartItems();
-  if (items.length) {
-    const lines = items.map(({ dish, quantity }) => `*${dish.name}* x${quantity}`).join('\n');
-    return `Hello Kestford Restaurant, I want to order these items.\n\n${lines}\n\n*Quantity:* ${getCartCount()}\n*Total:* AED ${getCartTotal()}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
-  }
-
-  const dish = getActiveDish();
-  const total = dish.price * standaloneQuantity;
-  return `Hello Kestford Restaurant, I want to order *${dish.name}*.\n\n*Quantity:* ${standaloneQuantity}\n*Total:* AED ${total}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
+  if (!items.length) return '';
+  const lines = items.map(({ dish, quantity }) => `*${dish.name}* x${quantity}`).join('\n');
+  return `Hello Kestford Restaurant, I want to order these items.\n\n${lines}\n\n*Quantity:* ${getCartCount()}\n*Total:* AED ${getCartTotal()}\n*Phone:* ${phone}\n*Location:* ${location}\n*Building Number:* ${building}\n\nPlease confirm my order.`;
 }
-
 plateStage.addEventListener('pointerdown', (event) => {
   plateSwipeStart(event.clientX, event.clientY);
 });
@@ -491,7 +496,6 @@ qtyMinus.addEventListener('click', () => {
     syncOrderSummary();
     return;
   }
-  standaloneQuantity = Math.max(1, standaloneQuantity - 1);
   syncOrderSummary();
 });
 qtyPlus.addEventListener('click', () => {
@@ -505,7 +509,6 @@ qtyPlus.addEventListener('click', () => {
     syncOrderSummary();
     return;
   }
-  standaloneQuantity += 1;
   syncOrderSummary();
 });
 orderForm.addEventListener('submit', (event) => {
@@ -519,7 +522,12 @@ orderForm.addEventListener('submit', (event) => {
     else orderBuilding.focus();
     return;
   }
-  const url = `https://wa.me/15798995633?text=${encodeURIComponent(buildWhatsAppMessage(phone, location, building))}`;
+  const message = buildWhatsAppMessage(phone, location, building);
+  if (!message) {
+    orderDish.focus();
+    return;
+  }
+  const url = `https://wa.me/15798995633?text=${encodeURIComponent(message)}`;
   window.open(url, '_blank', 'noopener');
 });
 
@@ -528,3 +536,4 @@ buildMenu();
 renderDish();
 updateCartVisuals();
 orderLocation.value = 'Dubai Marina, Dubai';
+window.addEventListener('resize', () => updatePlateBackdropText(getActiveDish()));
